@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Stackly Boutique - Ultra Modern Fashion</title>
+  <title>About | Stackly Boutique</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
   <style>
@@ -27,17 +27,13 @@
       --accent-dark: #cc578c;
       --glass: rgba(255,255,255,0.04);
     }
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     html, body {
-      height: 100%;
       margin: 0; padding: 0;
+      height: 100%;
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--text);
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
       padding-top: var(--header-h);
       transition: background 0.25s, color 0.25s;
     }
@@ -48,12 +44,12 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.05rem 4vw;
-      gap: 1rem;
-      z-index: 1200;
-      backdrop-filter: blur(6px);
+      padding: 1rem 4vw;
       background: linear-gradient(180deg, var(--glass), rgba(0,0,0,0));
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      z-index: 1200;
+      gap: 1rem;
+      backdrop-filter: blur(6px);
     }
     .logo {
       font-family: 'Playfair Display', serif;
@@ -63,13 +59,20 @@
       color: var(--accent);
       cursor: pointer;
       user-select: none;
-      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+      vertical-align: middle;
     }
     nav#mainNav {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      flex: 1;
       display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 2rem;
     }
     nav#mainNav a {
@@ -78,9 +81,9 @@
       font-weight: 600;
       text-transform: uppercase;
       font-size: 0.95rem;
-      letter-spacing: 1px;
       padding: 0.5rem 0;
-      transition: color 0.3s ease;
+      transition: color 0.3s;
+      letter-spacing: 1px;
     }
     nav#mainNav a:hover, nav#mainNav a:focus {
       color: var(--accent);
@@ -110,7 +113,7 @@
       color: var(--text);
       border: 2px solid var(--text);
     }
-    .actions button#themeToggle:hover, 
+    .actions button#themeToggle:hover,
     .actions button#themeToggle:focus {
       background: var(--accent);
       border-color: var(--accent);
@@ -137,108 +140,64 @@
       border-color: var(--accent-dark);
       outline: none;
     }
-    .hero {
-      min-height: 72vh;
-      padding: 3rem 8vw;
-      background: linear-gradient(135deg, rgba(247,37,133,0.82), rgba(255,182,193,0.62)),
-        url('https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&w=1600&q=80') center/cover no-repeat;
-      color: white;
-      border-radius: 0 0 32px 32px;
-      text-align: center;
+    .about-wrapper {
+      max-width: 900px;
+      background: var(--card);
+      margin: 4rem auto 0 auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.08);
+      padding: 3rem 2.4rem;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
-    .hero h1 {
+    h1 {
+      font-size: 2.6rem;
+      color: var(--accent);
       font-family: 'Playfair Display', serif;
-      font-size: 3.8rem;
-      margin-bottom: 1rem;
-    }
-    .hero p {
-      font-size: 1.25rem;
-      max-width: 600px;
-    }
-    .buttons {
-      margin-top: 2rem;
-      display: flex;
-      gap: 1.2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .btn {
-      border-radius: 50px;
-      padding: 0.9rem 2.2rem;
       font-weight: 700;
-      font-size: 1.1rem;
-      cursor: pointer;
-      border: none;
-      transition: all 0.3s ease;
-    }
-    .btn.primary {
-      background: var(--accent);
-      color: white;
-    }
-    .btn.primary:hover {
-      background: var(--accent-dark);
-    }
-    .btn.secondary {
-      background: transparent;
-      border: 2px solid rgba(255,255,255,0.7);
-      color: white;
-    }
-    .btn.secondary:hover {
-      background: var(--accent);
-      color: white;
-    }
-    .collections {
-      max-width: 1200px;
-      margin: 2rem auto 4rem;
-      padding: 0 6vw;
-    }
-    .collections h2 {
-      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+      margin-bottom: 1.1rem;
       text-align: center;
-      font-size: 2.5rem;
+    }
+    .about-content {
+      color: var(--muted);
+      font-size: 1.13rem;
+      line-height: 1.7;
+      max-width: 700px;
+      text-align: center;
       margin-bottom: 2rem;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .card {
-      background: var(--card);
-      border-radius: var(--radius);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .about-values {
+      margin-top: 1rem;
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      justify-content: center;
     }
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    .about-values article {
+      background: var(--bg);
+      border-radius: 12px;
+      box-shadow: 0 3px 12px rgba(200,0,50,0.05);
+      padding: 1.1rem 1.5rem;
+      min-width: 240px;
+      max-width: 300px;
+      text-align: center;
+      margin-bottom: 1.2rem;
+      border: 1.6px solid var(--accent);
     }
-    .card img {
-      width: 100%;
-      height: 320px;
-      object-fit: cover;
+    .about-values h3 {
+      color: var(--accent);
+      font-size: 1.11rem;
+      margin-bottom: 0.5rem;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
     }
-    .card-content {
-      padding: 1rem 1rem 1.5rem;
-      flex: 1;
-    }
-    .card-content h3 {
-      margin: 0 0 0.5rem;
-      font-size: 1.2rem;
-    }
-    .card-content p {
+    .about-values p {
       color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.4;
+      font-size: 0.98rem;
+      margin: 0;
+      line-height: 1.55;
     }
     footer {
       background: var(--card);
@@ -246,6 +205,7 @@
       text-align: center;
       color: var(--muted);
       font-size: 0.95rem;
+      margin-top: 4rem;
     }
     footer .social-icons {
       margin-bottom: 1.4rem;
@@ -261,85 +221,63 @@
     footer .social-icons a:hover {
       color: var(--accent);
     }
-    @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-      .card img {
-        height: 250px;
-      }
-    }
-    @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 700px) {
+      .about-wrapper { padding: 2rem 0.8rem; }
     }
   </style>
 </head>
 <body>
 <header>
-    <div class="logo" tabindex="0">
-    <a href="index.html" style="display:flex; align-items:center; text-decoration:none; color:var(--accent);">
-      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" style="height:40px; width:auto; margin-right:10px;" />
+  <div class="logo" tabindex="0">
+    <a href="index.html" style="display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:var(--accent);">
+      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" style="height:36px;width:auto;" />
       <span>STACKLY</span>
     </a>
   </div>
   <nav id="mainNav" aria-label="Primary navigation">
-    <a href="index.html#">Home</a>
-    <a href="http://127.0.0.1:5500/index.html#collections">Shop</a>
+    <a href="index.html">Home</a>
+    <a href="index.html#collections">Shop</a>
     <a href="about.html">About</a>
-    <a href="http://127.0.0.1:5500/index.html#contact">Contact</a>
-    <a href="http://127.0.0.1:5500/dashboard.html">Dashboard</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="dashboard.html">Dashboard</a>
   </nav>
   <div class="actions" aria-label="User actions">
-    <button type="button" id="themeToggle" aria-pressed="false" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode"><i class="fa-solid fa-moon"></i></button>
+    <button type="button" id="themeToggle" aria-pressed="false" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode">
+      <i class="fa-solid fa-moon"></i>
+    </button>
     <a href="login.html" class="login">Login</a>
     <a href="register.html" class="register">Register</a>
   </div>
 </header>
-<section class="hero" role="banner" aria-label="Fashion banner">
-  <h1>Discover Your Unique Style</h1>
-  <p>Modern. Chic. Timeless. <br> Hand-picked pieces for your everyday elegance.</p>
-  <div class="buttons">
-    <button class="btn primary" onclick="location.href='#collections'">Shop Now</button>
-    <button class="btn secondary" onclick="location.href='#about'">Our Story</button>
-  </div>
-</section>
-<section id="collections" class="collections" aria-label="Featured collection">
-  <h2>Featured Collections</h2>
-  <div class="grid">
-    <div class="card">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&w=900&q=80" alt="Elegant red dress" />
-      <div class="card-content">
-        <h3>Elegant Red Dress</h3>
-        <p>Perfect for evening occasions with a modern twist.</p>
-      </div>
+<main>
+  <div class="about-wrapper" role="main" aria-labelledby="aboutTitle">
+    <h1 id="aboutTitle">About Stackly Boutique</h1>
+    <div class="about-content">
+      Stackly Boutique is where modern meets timeless! <br><br>
+      Founded on the belief that every wardrobe should blend luxury and comfort, Stackly curates fashion pieces that are both contemporary and lasting. Our focus is on hand-picked collections designed to offer confident, versatile, and easy-to-love looks.<br><br>
+      Whether you're dressing for everyday moments or special celebrations, we pride ourselves on quality, ethical sourcing, and customer-first service.
     </div>
-    <div class="card">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1463107971871-fbac9ddb920f?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Classic white blouse" />
-      <div class="card-content">
-        <h3>Classic White Blouse</h3>
-        <p>A timeless style essential for every wardrobe.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img loading="lazy" src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&w=900&q=80" alt="Trendy summer hat" />
-      <div class="card-content">
-        <h3>Trendy Summer Hat</h3>
-        <p>Keep cool and stylish through the sunny days.</p>
-      </div>
+    <div class="about-values">
+      <article>
+        <h3>Curated Collections</h3>
+        <p>Every item is chosen for its elegance and versatility, so you can build a wardrobe that lasts and adapts.</p>
+      </article>
+      <article>
+        <h3>Quality First</h3>
+        <p>From fabrics to finishing, we prioritize quality and longevity in all our products.</p>
+      </article>
+      <article>
+        <h3>Customer Care</h3>
+        <p>Our team is dedicated to making your experience personal, smooth, and delightful at every step.</p>
+      </article>
+      <article>
+        <h3>Sustainable Choices</h3>
+        <p>We collaborate with partners who value ethical production and sustainable practices.</p>
+      </article>
     </div>
   </div>
-</section>
-<section id="about" style="max-width: 900px; margin: 2rem auto; padding: 0 6vw;">
-  <h2 style="font-family: 'Playfair Display', serif; text-align:center; font-size: 2rem;">About Stackly Boutique</h2>
-  <p style="color: var(--muted); text-align:center; line-height:1.6;">
-    At Stackly Boutique, we curate wardrobe essentials with love — blending luxury and comfort. Each piece is chosen for longevity, fit, and timeless aesthetic.
-  </p>
-</section>
+</main>
+
 <footer id="contact" aria-label="Contact information">
   <div class="social-icons">
     <a href="https://mail.google.com" title="Gmail" aria-label="Send email"><i class="fa-solid fa-envelope"></i></a>
@@ -350,10 +288,10 @@
   </div>
   <p>&copy; 2025 Stackly. All rights reserved.</p>
 </footer>
+
 <script>
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
-
   function applyTheme(theme) {
     if (theme === 'dark') {
       root.setAttribute('data-theme', 'dark');
