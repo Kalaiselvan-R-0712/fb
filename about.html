@@ -25,7 +25,7 @@
       --muted: #bdbdbd;
       --accent: #ff6aa3;
       --accent-dark: #cc578c;
-      --glass: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.06);
     }
     * { box-sizing: border-box; }
     html, body {
@@ -51,17 +51,16 @@
       gap: 1rem;
       backdrop-filter: blur(6px);
     }
-    .logo {
+    .logo a {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+      color: var(--accent);
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: 2px;
-      color: var(--accent);
-      cursor: pointer;
-      user-select: none;
-      display: flex;
-      align-items: center;
-      gap: 0.7rem;
     }
     .logo img {
       height: 36px;
@@ -69,10 +68,10 @@
       vertical-align: middle;
     }
     nav#mainNav {
-      flex: 1;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
       display: flex;
-      align-items: center;
-      justify-content: center;
       gap: 2rem;
     }
     nav#mainNav a {
@@ -81,13 +80,12 @@
       font-weight: 600;
       text-transform: uppercase;
       font-size: 0.95rem;
+      letter-spacing: 1px;
       padding: 0.5rem 0;
       transition: color 0.3s;
-      letter-spacing: 1px;
     }
-    nav#mainNav a:hover, nav#mainNav a:focus {
+    nav#mainNav a:hover, nav#mainNav a[aria-current="page"] {
       color: var(--accent);
-      outline: none;
     }
     .actions {
       display: flex;
@@ -113,33 +111,30 @@
       color: var(--text);
       border: 2px solid var(--text);
     }
-    .actions button#themeToggle:hover,
-    .actions button#themeToggle:focus {
+    .actions button#themeToggle:hover {
       background: var(--accent);
       border-color: var(--accent);
       color: white;
-      outline: none;
     }
     .actions a.login {
       background: transparent;
       color: var(--accent);
       border-color: var(--accent);
     }
-    .actions a.login:hover, .actions a.login:focus {
+    .actions a.login:hover {
       background: var(--accent);
       color: white;
-      outline: none;
     }
     .actions a.register {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
     }
-    .actions a.register:hover, .actions a.register:focus {
+    .actions a.register:hover {
       background: var(--accent-dark);
       border-color: var(--accent-dark);
-      outline: none;
     }
+
     .about-wrapper {
       max-width: 900px;
       background: var(--card);
@@ -228,39 +223,40 @@
 </head>
 <body>
 <header>
-  <div class="logo" tabindex="0">
-    <a href="index.html" style="display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:var(--accent);">
-      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" style="height:36px;width:auto;" />
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" />
       <span>STACKLY</span>
     </a>
   </div>
-  <nav id="mainNav" aria-label="Primary navigation">
+  <nav id="mainNav">
     <a href="index.html">Home</a>
-    <a href="index.html#collections">Shop</a>
-    <a href="about.html">About</a>
-    <a href="index.html#contact">Contact</a>
-    <a href="dashboard.html">Dashboard</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html" aria-current="page">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="customer-dashboard.html">Dashboard</a>
   </nav>
-  <div class="actions" aria-label="User actions">
-    <button type="button" id="themeToggle" aria-pressed="false" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode">
+  <div class="actions">
+    <button type="button" id="themeToggle" title="Toggle Dark/Light Mode">
       <i class="fa-solid fa-moon"></i>
     </button>
     <a href="login.html" class="login">Login</a>
     <a href="register.html" class="register">Register</a>
   </div>
 </header>
+
 <main>
-  <div class="about-wrapper" role="main" aria-labelledby="aboutTitle">
-    <h1 id="aboutTitle">About Stackly Boutique</h1>
+  <div class="about-wrapper">
+    <h1>About Stackly Boutique</h1>
     <div class="about-content">
       Stackly Boutique is where modern meets timeless! <br><br>
-      Founded on the belief that every wardrobe should blend luxury and comfort, Stackly curates fashion pieces that are both contemporary and lasting. Our focus is on hand-picked collections designed to offer confident, versatile, and easy-to-love looks.<br><br>
+      Founded on the belief that every wardrobe should blend luxury and comfort, Stackly curates fashion pieces that are both contemporary and lasting. <br><br>
       Whether you're dressing for everyday moments or special celebrations, we pride ourselves on quality, ethical sourcing, and customer-first service.
     </div>
     <div class="about-values">
       <article>
         <h3>Curated Collections</h3>
-        <p>Every item is chosen for its elegance and versatility, so you can build a wardrobe that lasts and adapts.</p>
+        <p>Every item is chosen for its elegance and versatility, so you can build a wardrobe that lasts.</p>
       </article>
       <article>
         <h3>Quality First</h3>
@@ -268,7 +264,7 @@
       </article>
       <article>
         <h3>Customer Care</h3>
-        <p>Our team is dedicated to making your experience personal, smooth, and delightful at every step.</p>
+        <p>Our team is dedicated to making your experience personal, smooth, and delightful.</p>
       </article>
       <article>
         <h3>Sustainable Choices</h3>
@@ -278,13 +274,13 @@
   </div>
 </main>
 
-<footer id="contact" aria-label="Contact information">
+<footer>
   <div class="social-icons">
-    <a href="https://mail.google.com" title="Gmail" aria-label="Send email"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://www.linkedin.com" title="LinkedIn" aria-label="LinkedIn Profile"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://x.com" title="Twitter" aria-label="Twitter Profile"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.facebook.com" title="Facebook" aria-label="Facebook Profile"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com" title="Instagram" aria-label="Instagram Profile"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
   </div>
   <p>&copy; 2025 Stackly. All rights reserved.</p>
 </footer>
@@ -292,19 +288,21 @@
 <script>
   const themeToggle = document.getElementById('themeToggle');
   const root = document.documentElement;
+
   function applyTheme(theme) {
     if (theme === 'dark') {
       root.setAttribute('data-theme', 'dark');
-      themeToggle.setAttribute('aria-pressed', 'true');
       themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
     } else {
       root.removeAttribute('data-theme');
-      themeToggle.setAttribute('aria-pressed', 'false');
       themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
     }
   }
-  const savedTheme = localStorage.getItem('stackly-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+  const savedTheme = localStorage.getItem('stackly-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   applyTheme(savedTheme);
+
   themeToggle.addEventListener('click', () => {
     const currentTheme = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
     const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';

@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop | Stackly Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #fff;
+      --text: #222;
+      --muted: #6b6b6b;
+      --accent: #f72585;
+      --accent-dark: #d31e69;
+      --glass: rgba(255,255,255,0.65);
+      --header-h: 88px;
+      --radius: 18px;
+    }
+    [data-theme='dark'] {
+      --bg: #0b0b0c;
+      --card: #0f0f10;
+      --text: #f1f1f1;
+      --muted: #bdbdbd;
+      --accent: #ff6aa3;
+      --accent-dark: #cc578c;
+      --glass: rgba(255,255,255,0.04);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      height: 100%; margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg); color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      padding-top: var(--header-h);
+      transition: background .25s, color .25s;
+    }
+
+    header {
+      position: fixed; top:0; left:0; right:0;
+      height: var(--header-h);
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.05rem 4vw; gap:1rem; z-index:1200;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, var(--glass), transparent);
+      box-shadow:0 6px 18px rgba(0,0,0,0.12);
+    }
+
+    .logo {
+      font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700;
+      letter-spacing:2px; color:var(--accent); display:flex; align-items:center;
+      text-decoration:none;
+    }
+
+    nav#mainNav {
+      position:absolute; left:50%; transform:translateX(-50%);
+      display:flex; gap:2rem;
+    }
+    nav#mainNav a {
+      color:var(--text); text-decoration:none; font-weight:600;
+      font-size:.95rem; text-transform:uppercase; letter-spacing:1px;
+      padding:.5rem 0; transition:.3s;
+    }
+    nav#mainNav a:hover, nav#mainNav a[aria-current="page"] {
+      color:var(--accent);
+    }
+    .actions {
+      display:flex; align-items:center; gap:1rem;
+    }
+    .actions button, .actions a {
+      padding:.5rem 1.2rem; border-radius:25px;
+      font-weight:600; border:2px solid transparent;
+      cursor:pointer; text-decoration:none; transition:.3s;
+    }
+    #themeToggle {
+      background:transparent; color:var(--text); border:2px solid var(--text);
+    }
+    #themeToggle:hover { background:var(--accent); border-color:var(--accent); color:white; }
+
+    .actions a.login {
+      background:transparent; color:var(--accent); border-color:var(--accent);
+    }
+    .actions a.login:hover { background:var(--accent); color:#fff; }
+
+    .actions a.register {
+      background:var(--accent); color:white;
+    }
+    .actions a.register:hover { background:var(--accent-dark); }
+
+    main { max-width:1200px; margin:2rem auto 4rem; padding:0 6vw; }
+    h1 {
+      font-family:'Playfair Display',serif; text-align:center; font-size:2.5rem;
+      margin-bottom:2rem; color:var(--accent);
+    }
+
+    .grid {
+      display:grid; gap:2rem;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    }
+
+    .card {
+      background:var(--card); border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(0,0,0,0.08);
+      overflow:hidden; cursor:pointer; display:flex; flex-direction:column;
+      transition:.3s;
+    }
+    .card:hover { transform:translateY(-10px); box-shadow:0 20px 45px rgba(0,0,0,0.12); }
+    .card img { width:100%; height:320px; object-fit:cover; }
+    .card-content { padding:1rem 1rem 1.5rem; flex:1; display:flex; flex-direction:column; }
+    .card-content h3 { margin:0 0 .5rem; color:var(--accent); }
+    .card-content p { color:var(--muted); flex-grow:1; }
+    .card-content .price { margin-top:1rem; font-weight:700; color:var(--accent-dark); }
+
+    footer {
+      background:var(--card); padding:2.5rem 6vw; text-align:center; color:var(--muted);
+    }
+    footer .social-icons { margin-bottom:1.4rem; font-size:1.6rem; display:flex; justify-content:center; gap:1.2rem; }
+    footer .social-icons a { color:var(--muted); transition:.3s; }
+    footer .social-icons a:hover { color:var(--accent); }
+
+    @media(max-width:768px){ .card img { height:250px; } }
+  </style>
+</head>
+
+<body>
+<header>
+  <a class="logo" href="index.html">
+    <img src="assets/logo/the_stackly_logo.jpg" style="height:40px;margin-right:10px;">
+    STACKLY
+  </a>
+
+  <nav id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="shop.html" aria-current="page">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="customer-dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="actions">
+    <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+    <a class="login" href="login.html">Login</a>
+    <a class="register" href="register.html">Register</a>
+  </div>
+</header>
+
+<main>
+  <h1>Shop Our Boutique</h1>
+
+  <div class="grid">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Lavender Chic Dress">
+      <div class="card-content">
+        <h3>Lavender Chic Dress</h3>
+        <p>Flowy, elegant, and perfect for modern evening wear.</p>
+        <div class="price">$149</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1463107971871-fbac9ddb920f?auto=format&fit=crop&w=900&q=80" alt="Classic White Blouse">
+      <div class="card-content">
+        <h3>Classic White Blouse</h3>
+        <p>A timeless style essential for every wardrobe.</p>
+        <div class="price">$79</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&w=900&q=80" alt="Summer Hat">
+      <div class="card-content">
+        <h3>Trendy Summer Hat</h3>
+        <p>Keep cool and stylish through the sunny days.</p>
+        <div class="price">$45</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Handbag">
+      <div class="card-content">
+        <h3>Classic Leather Handbag</h3>
+        <p>A versatile, timeless accessory in rich tan leather.</p>
+        <div class="price">$199</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=900&q=80" alt="Black Ankle Boots">
+      <div class="card-content">
+        <h3>Stylish Black Ankle Boots</h3>
+        <p>Comfortable heels, perfect for every season.</p>
+        <div class="price">$120</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1542068829-1115f7259450?auto=format&fit=crop&w=900&q=80" alt="Silk Scarf">
+      <div class="card-content">
+        <h3>Elegant Silk Scarf</h3>
+        <p>Subtle floral pattern to add charm and warmth.</p>
+        <div class="price">$60</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="social-icons">
+    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p>&copy; 2025 Stackly. All rights reserved.</p>
+</footer>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  function applyTheme(t){
+    if(t==="dark"){
+      root.setAttribute('data-theme','dark');
+      themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';
+    } else {
+      root.removeAttribute('data-theme');
+      themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';
+    }
+  }
+  const saved = localStorage.getItem("stackly-theme") ||
+    (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark":"light");
+  applyTheme(saved);
+
+  themeToggle.addEventListener("click",()=>{
+    const next = root.getAttribute("data-theme")==="dark" ? "light":"dark";
+    applyTheme(next);
+    localStorage.setItem("stackly-theme",next);
+  });
+</script>
+</body>
+</html>

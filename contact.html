@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact | Stackly Boutique</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
+  <style>
+    :root {
+      --bg: #fafafa;
+      --card: #fff;
+      --text: #222;
+      --muted: #6b6b6b;
+      --accent: #f72585;
+      --accent-dark: #d31e69;
+      --glass: rgba(255,255,255,0.65);
+      --header-h: 88px;
+      --radius: 18px;
+    }
+    [data-theme='dark'] {
+      --bg: #0b0b0c;
+      --card: #0f0f10;
+      --text: #f1f1f1;
+      --muted: #bdbdbd;
+      --accent: #ff6aa3;
+      --accent-dark: #cc578c;
+      --glass: rgba(255,255,255,0.06);
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding-top: var(--header-h);
+      transition: background 0.25s, color 0.25s;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 4vw;
+      background: linear-gradient(180deg, var(--glass), rgba(0,0,0,0));
+      box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+      z-index: 1200;
+      gap: 1rem;
+      backdrop-filter: blur(6px);
+    }
+    .logo a {
+      display: flex; align-items: center; gap: 0.7rem;
+      text-decoration: none; color: var(--accent);
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; font-weight: 700; letter-spacing: 2px;
+    }
+    .logo img { height: 36px; width: auto; vertical-align: middle; }
+
+    nav#mainNav {
+      position: absolute; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 2rem;
+    }
+    nav#mainNav a {
+      color: var(--text); text-decoration: none; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 1px; font-size: 0.95rem;
+      padding: 0.5rem 0; transition: color 0.3s;
+    }
+    nav#mainNav a:hover, nav#mainNav a[aria-current="page"] {
+      color: var(--accent);
+    }
+
+    .actions {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .actions button, .actions a {
+      padding: 0.5rem 1.2rem; border-radius: 25px;
+      font-weight: 600; border: 2px solid transparent;
+      cursor: pointer; text-decoration: none;
+      transition: 0.3s; display: inline-flex; align-items: center; justify-content: center;
+    }
+    #themeToggle {
+      background: transparent; color: var(--text); border: 2px solid var(--text);
+    }
+    #themeToggle:hover {
+      background: var(--accent); border-color: var(--accent); color: white;
+    }
+    .login {
+      background: transparent; color: var(--accent); border-color: var(--accent);
+    }
+    .login:hover { background: var(--accent); color: white; }
+    .register {
+      background: var(--accent); color: white;
+    }
+    .register:hover { background: var(--accent-dark); }
+
+    main {
+      max-width: 900px;
+      margin: 4rem auto;
+      padding: 2.5rem 2rem;
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--accent);
+    }
+
+    .contact-content {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.6;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      border: 2px solid var(--accent);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--accent-dark);
+      outline: none;
+    }
+    button.submit-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      align-self: center;
+      transition: background 0.3s;
+    }
+    button.submit-btn:hover {
+      background: var(--accent-dark);
+    }
+
+    footer {
+      background: var(--card);
+      padding: 2.5rem 6vw;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 4rem;
+    }
+    footer .social-icons {
+      margin-bottom: 1.4rem;
+      font-size: 1.6rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+    footer .social-icons a {
+      color: var(--muted);
+      transition: color 0.3s;
+    }
+    footer .social-icons a:hover { color: var(--accent); }
+
+    @media(max-width: 700px) {
+      main { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="logo">
+    <a href="index.html">
+      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" />
+      <span>STACKLY</span>
+    </a>
+  </div>
+
+  <nav id="mainNav">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+    <a href="customer-dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="actions">
+    <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+    <a href="login.html" class="login">Login</a>
+    <a href="register.html" class="register">Register</a>
+  </div>
+</header>
+
+<main>
+  <h1>Contact Us</h1>
+  <div class="contact-content">
+    We’d love to hear from you! Whether you have a question about our collections, your order, or just want to share your experience, feel free to reach out.
+  </div>
+
+  <form id="contactForm" action="#" method="post">
+    <div>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Your Name" required />
+    </div>
+    <div>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="you@email.com" required />
+    </div>
+    <div>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send Message</button>
+  </form>
+</main>
+
+<footer>
+  <div class="social-icons">
+    <a href="#"><i class="fa-solid fa-envelope"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p>&copy; 2025 Stackly. All rights reserved.</p>
+</footer>
+
+<script>
+  const themeToggle = document.getElementById('themeToggle');
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    } else {
+      root.removeAttribute('data-theme');
+      themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
+    }
+  }
+
+  const savedTheme = localStorage.getItem('stackly-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(savedTheme);
+
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = current === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('stackly-theme', next);
+  });
+</script>
+</body>
+</html>
