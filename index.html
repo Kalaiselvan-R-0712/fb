@@ -72,7 +72,7 @@
       display: flex;
       gap: 2rem;
     }
-    nav#mainNav a {
+    nav#mainNav a, .dropbtn {
       color: var(--text);
       text-decoration: none;
       font-weight: 600;
@@ -81,22 +81,19 @@
       letter-spacing: 1px;
       padding: 0.5rem 0;
       transition: color 0.3s ease;
-    }
-    nav#mainNav a:hover, nav#mainNav a:focus {
-      color: var(--accent);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      background: none;
+      border: none;
       outline: none;
     }
-    nav#mainNav {
-      position:absolute; left:50%; transform:translateX(-50%);
-      display:flex; gap:2rem;
-    }
-    nav#mainNav a {
-      color:var(--text); text-decoration:none; font-weight:600;
-      font-size:.95rem; text-transform:uppercase; letter-spacing:1px;
-      padding:.5rem 0; transition:.3s;
-    }
-    nav#mainNav a:hover, nav#mainNav a[aria-current="page"] {
-      color:var(--accent);
+    nav#mainNav a:hover, .dropbtn:hover,
+    nav#mainNav a:focus, .dropbtn:focus,
+    nav#mainNav a[aria-current="page"] {
+      color: var(--accent);
+      outline: none;
     }
     .actions {
       display: flex;
@@ -122,7 +119,7 @@
       color: var(--text);
       border: 2px solid var(--text);
     }
-    .actions button#themeToggle:hover, 
+    .actions button#themeToggle:hover,
     .actions button#themeToggle:focus {
       background: var(--accent);
       border-color: var(--accent);
@@ -133,21 +130,62 @@
       background: transparent;
       color: var(--accent);
       border-color: var(--accent);
+      border: 2px solid var(--accent);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
     }
-    .actions a.login:hover, .actions a.login:focus {
+    .actions a.login:hover,
+    .actions a.login:focus {
       background: var(--accent);
       color: white;
       outline: none;
+      border-color: var(--accent);
     }
     .actions a.register {
       background: var(--accent);
       color: white;
       border-color: var(--accent);
     }
-    .actions a.register:hover, .actions a.register:focus {
+    .actions a.register:hover,
+    .actions a.register:focus {
       background: var(--accent-dark);
       border-color: var(--accent-dark);
       outline: none;
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: var(--card);
+      min-width: 140px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.15);
+      border-radius: var(--radius);
+      z-index: 1500;
+      top: 120%;
+      left: 0;
+    }
+    .dropdown-content a {
+      color: var(--text);
+      padding: 0.6rem 1rem;
+      text-decoration: none;
+      display: block;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 0.8px;
+      text-transform: none;
+      cursor: pointer;
+    }
+    .dropdown-content a:hover,
+    .dropdown-content a:focus {
+      background-color: var(--accent);
+      color: white;
+      outline: none;
+    }
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
+      display: block;
     }
     .hero {
       min-height: 72vh;
@@ -293,14 +331,21 @@
 </head>
 <body>
 <header>
-    <div class="logo" tabindex="0">
+  <div class="logo" tabindex="0">
     <a href="index.html" style="display:flex; align-items:center; text-decoration:none; color:var(--accent);">
       <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" style="height:40px; width:auto; margin-right:10px;" />
       <span>STACKLY</span>
     </a>
   </div>
   <nav id="mainNav" aria-label="Primary navigation">
-    <a href="index.html" aria-current="page">Home</a>
+    <div class="dropdown">
+      <button class="dropbtn" aria-haspopup="true" aria-expanded="false">
+        Home <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content" role="menu" aria-label="Home submenu">
+        <a href="homepage2.html" role="menuitem">Home 2</a>
+      </div>
+    </div>
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
