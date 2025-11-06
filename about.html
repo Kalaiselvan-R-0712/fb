@@ -223,23 +223,21 @@
 </head>
 <body>
 <header>
-  <div class="logo">
-    <a href="index.html">
-      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" />
+    <div class="logo" tabindex="0">
+    <a href="index.html" style="display:flex; align-items:center; text-decoration:none; color:var(--accent);">
+      <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" style="height:40px; width:auto; margin-right:10px;" />
       <span>STACKLY</span>
     </a>
   </div>
-  <nav id="mainNav">
+  <nav id="mainNav" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="shop.html">Shop</a>
     <a href="about.html" aria-current="page">About</a>
     <a href="contact.html">Contact</a>
     <a href="customer-dashboard.html">Dashboard</a>
   </nav>
-  <div class="actions">
-    <button type="button" id="themeToggle" title="Toggle Dark/Light Mode">
-      <i class="fa-solid fa-moon"></i>
-    </button>
+  <div class="actions" aria-label="User actions">
+    <button type="button" id="themeToggle" aria-pressed="false" title="Toggle Dark/Light Mode" aria-label="Toggle Dark/Light Mode"><i class="fa-solid fa-moon"></i></button>
     <a href="login.html" class="login">Login</a>
     <a href="register.html" class="register">Register</a>
   </div>
