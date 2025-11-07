@@ -1,312 +1,280 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard | Stackly</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard | Stackly Boutique</title>
 
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>tailwind.config = { darkMode: 'class' };</script>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Fonts & Icons (same as other pages) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      transition: background-color 0.3s, color 0.3s;
+    :root{
+      --bg:#fafafa; --card:#fff; --text:#222; --muted:#6b6b6b;
+      --accent:#f72585; --accent-dark:#d31e69; --glass:rgba(255,255,255,0.65);
+      --header-h:88px; --radius:18px;
     }
-    h1, h2, h3 {
-      font-family: 'Poppins', sans-serif;
+    [data-theme='dark']{
+      --bg:#0b0b0c; --card:#0f0f10; --text:#f1f1f1; --muted:#bdbdbd;
+      --accent:#ff6aa3; --accent-dark:#cc578c; --glass:rgba(255,255,255,0.04);
     }
-    .card {
-      border-radius: 1rem;
-      padding: 1.5rem;
-      background: white;
-      transition: background 0.3s, transform 0.2s;
+
+    *{box-sizing:border-box;}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      padding-top:var(--header-h);
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      transition:background 0.25s,color 0.25s;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
-    .dark .card {
-      background: #1e293b;
+
+    /* Header (consistent with site) */
+    header{
+      position:fixed;
+      top:0; left:0; right:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0.5rem 1rem;
+      background:linear-gradient(180deg,var(--glass),rgba(0,0,0,0));
+      backdrop-filter:blur(6px);
+      z-index:1200;
+      flex-wrap:wrap;
+      border-bottom:1px solid rgba(0,0,0,0.04);
     }
-    .card:hover {
-      transform: translateY(-4px);
+
+    .logo{display:flex;align-items:center;gap:0.6rem;}
+    .logo a{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:var(--accent);font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;}
+    .logo img{height:40px;width:auto;object-fit:cover;border-radius:9999px;flex-shrink:0;}
+    .logo-img{height:40px;width:auto;}
+
+    nav#mainNav{display:flex;gap:1.2rem;align-items:center;}
+    nav#mainNav a{color:var(--text);text-decoration:none;font-weight:600;text-transform:uppercase;font-size:0.95rem;cursor:pointer;}
+    nav#mainNav a:hover, nav#mainNav a[aria-current="page"]{color:var(--accent);}
+
+    .actions{display:flex;gap:0.7rem;align-items:center;}
+    .actions button, .actions a{padding:0.45rem 1rem;border-radius:22px;font-weight:600;font-size:0.95rem;border:2px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:0.25s;text-decoration:none;color:inherit;background:transparent;}
+    .actions button#themeToggle{border:2px solid var(--text);}
+    .actions button#themeToggle:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+    .actions a.home-btn{background:var(--accent);color:#fff;border:2px solid var(--accent);}
+    .actions a.home-btn:hover{background:var(--accent-dark);border-color:var(--accent-dark);}
+
+    .hamburger{display:none;font-size:1.6rem;background:none;border:none;cursor:pointer;padding:0.2rem 0.5rem;}
+    .hamburger i{color:var(--text);font-size:1.6rem;}
+
+    /* Main layout */
+    main{max-width:1200px;margin:2rem auto;padding:0 6vw 4rem;}
+    .welcome{ text-align:center; margin-bottom:1rem; }
+    .welcome h1{font-family:'Playfair Display',serif;font-size:2.2rem;margin:0 0 6px;}
+    .welcome p{color:var(--muted);margin:0;}
+
+    /* Analytics / Cards */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-top:1rem;}
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      box-shadow:0 8px 30px rgba(0,0,0,0.06);
+      padding:1.25rem;
+      transition:transform 0.25s,box-shadow 0.25s;
+      overflow:hidden;
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 20px 45px rgba(0,0,0,0.12);}
+    .card h3{margin:0 0 6px;font-size:1rem;display:flex;align-items:center;gap:0.5rem;font-weight:700;}
+    .card .big{font-size:2rem;font-weight:800;margin:6px 0;}
+    .card p.small{color:var(--muted);margin:0;font-size:0.92rem;}
+
+    /* Admin controls */
+    .controls-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1rem;}
+    .control-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1rem;border-radius:14px;background:var(--card);cursor:pointer;border:1px solid rgba(0,0,0,0.04);transition:transform .2s,box-shadow .2s;}
+    .control-btn:hover{transform:translateY(-6px);box-shadow:0 12px 30px rgba(0,0,0,0.08);}
+    .control-btn i{font-size:1.6rem;margin-bottom:0.4rem;}
+
+    /* System overview */
+    .overview .card{padding:1.2rem;}
+
+    footer{background:var(--card);padding:2.5rem 6vw;text-align:center;color:var(--muted);font-size:0.95rem;border-top:1px solid rgba(0,0,0,0.04);margin-top:2rem;}
+
+    /* Responsive */
+    @media(max-width:1024px){
+      .grid{grid-template-columns:repeat(2,1fr);}
+      .controls-grid{grid-template-columns:repeat(2,1fr);}
+      nav#mainNav{gap:0.8rem;}
+    }
+    @media(max-width:768px){
+      header{padding:0.6rem 0.9rem;}
+      nav#mainNav{display:none;width:100%;flex-direction:column;margin-top:0.6rem;}
+      nav#mainNav.active{display:flex;}
+      .hamburger{display:block;}
+      .logo img{height:38px;}
+      body{padding-top:78px;}
+      .grid{grid-template-columns:1fr;}
+      .controls-grid{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:480px){
+      .logo img{height:34px;}
+      .welcome h1{font-size:1.6rem;}
+      .actions a.home-btn{display:none;}
+      .controls-grid{grid-template-columns:1fr;}
     }
   </style>
-  <style>
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Small devices (phones) */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 2rem; }
-  .shop-grid { gap: 1rem; }
-}
-
-/* Tablets */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .hero h1 { font-size: 2.5rem; }
-  .shop-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-}
-
-/* Large screens (laptops, desktops) */
-@media (min-width: 1025px) {
-  .hero h1 { font-size: 3rem; }
-}
-
-img, video {
-  max-width: 100%;
-  height: auto;
-}
-
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-
-/* --- HEADER RESPONSIVE FIXES --- */
-header {
-  flex-wrap: wrap;
-}
-
-/* Dropdown adjustments */
-.nav-item.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--bg-light);
-  min-width: 150px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  flex-direction: column;
-  z-index: 1001;
-}
-
-.dropdown-content a {
-  padding: 0.5rem 1rem;
-  display: block;
-  color: var(--text-dark);
-}
-
-.nav-item.dropdown:hover .dropdown-content {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Hamburger menu for mobile */
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  z-index: 1002;
-}
-
-/* NAV and BUTTON adjustments for tablets & mobile */
-@media (max-width: 1024px) {
-  nav {
-    gap: 0.5rem;
-  }
-  .logo-img { height: 40px; }
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 0.5rem;
-  }
-
-  nav a, .dropdown-content a {
-    padding: 0.7rem 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  .btn-group {
-    margin-top: 0.5rem;
-    width: 100%;
-    justify-content: center;
-  }
-
-  header {
-    flex-wrap: wrap;
-    padding: 0.5rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-name { font-size: 1.3rem; }
-  .logo-img { height: 35px; }
-}
-
-</style>
 </head>
+<body>
 
-<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-300">
+<header>
+  <div class="logo">
+    <a href="index.html"><img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" class="logo-img"><span>STACKLY</span></a>
+  </div>
 
-  <!-- HEADER -->
-  <header class="fixed w-full top-0 z-50 border-b border-slate-200 dark:border-gray-700 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl shadow">
-    <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex items-center justify-between h-20">
-      <!-- Logo -->
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo" class="w-12 h-12 rounded-full shadow-lg group-hover:scale-105 transition" />
-        <span class="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-cyan-400 group-hover:underline">Stackly</span>
-      </a>
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false"><i class="fa fa-bars"></i></button>
 
-      <!-- Header Right -->
-      <div class="flex items-center gap-4">
-        <a href="index.html" class="px-4 py-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-lg transition">Homepage</a>
-        <button id="theme-toggle" class="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-lg text-lg hover:shadow transition">🌙</button>
-        <button id="logoutBtn" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition">Logout</button>
-      </div>
+  <nav id="mainNav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="admin-dashboard.html" aria-current="page">Admin Dashboard</a>
+  </nav>
+
+  <div class="actions">
+    <button id="themeToggle" aria-pressed="false" title="Toggle theme"><i class="fa-solid fa-moon"></i></button>
+    <a href="index.html" class="home-btn">Homepage</a>
+    <button id="logoutBtn">Logout</button>
+  </div>
+</header>
+
+<main>
+  <section class="welcome">
+    <h1>Welcome, <span id="adminName" style="color:var(--accent)">Admin</span> 👋</h1>
+    <p>Your Stackly admin control center.</p>
+  </section>
+
+  <!-- Analytics -->
+  <section class="grid" aria-label="analytics">
+    <div class="card">
+      <h3><i class="fa-solid fa-users" style="color:var(--accent)"></i> Total Users</h3>
+      <div class="big">1,254</div>
+      <p class="small">Active users this month</p>
     </div>
-  </header>
 
-  <!-- MAIN DASHBOARD -->
-  <main class="pt-28 pb-16 px-6 max-w-7xl mx-auto space-y-10">
-    <!-- Welcome -->
-    <section class="text-center">
-      <h1 class="text-3xl font-bold mb-2">Welcome, <span id="adminName" class="text-indigo-600 dark:text-cyan-400">Admin</span> 👋</h1>
-      <p class="text-gray-600 dark:text-gray-400">Here’s your Stackly admin control center.</p>
-    </section>
+    <div class="card">
+      <h3><i class="fa-solid fa-chart-pie" style="color:#4fc3f7"></i> Server Utilization</h3>
+      <div class="big">65%</div>
+      <p class="small">of total capacity in use</p>
+    </div>
 
-    <!-- Analytics Section -->
-    <section class="grid md:grid-cols-3 gap-6">
-      <div class="card shadow-md hover:shadow-xl">
-        <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="fa-solid fa-users text-indigo-500"></i> Total Users</h3>
-        <p class="text-3xl font-bold mb-1">1,254</p>
-        <p class="text-sm text-gray-500 dark:text-gray-400">Active users this month</p>
-      </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-dollar-sign" style="color:#34d399"></i> Revenue</h3>
+      <div class="big">$23,870</div>
+      <p class="small">Collected this month</p>
+    </div>
+  </section>
 
-      <div class="card shadow-md hover:shadow-xl">
-        <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="fa-solid fa-chart-pie text-cyan-500"></i> Server Utilization</h3>
-        <p class="text-3xl font-bold mb-1">65%</p>
-        <p class="text-sm text-gray-500 dark:text-gray-400">of total capacity in use</p>
-      </div>
+  <!-- Admin Controls -->
+  <section style="margin-top:18px;">
+    <h2 style="font-family:'Playfair Display',serif;margin:0 0 12px 0;font-size:1.15rem;">Admin Controls</h2>
+    <div class="controls-grid">
+      <button class="control-btn" type="button"><i class="fa-solid fa-user-gear" style="color:var(--accent)"></i><span>Manage Users</span></button>
+      <button class="control-btn" type="button"><i class="fa-solid fa-server" style="color:#60a5fa"></i><span>Monitor Servers</span></button>
+      <button class="control-btn" type="button"><i class="fa-solid fa-chart-line" style="color:#34d399"></i><span>View Reports</span></button>
+      <button class="control-btn" type="button"><i class="fa-solid fa-shield-halved" style="color:#f59e0b"></i><span>Security Settings</span></button>
+    </div>
+  </section>
 
-      <div class="card shadow-md hover:shadow-xl">
-        <h3 class="text-lg font-semibold mb-2 flex items-center gap-2"><i class="fa-solid fa-dollar-sign text-emerald-500"></i> Revenue</h3>
-        <p class="text-3xl font-bold mb-1">$23,870</p>
-        <p class="text-sm text-gray-500 dark:text-gray-400">Collected this month</p>
-      </div>
-    </section>
+  <!-- System Overview -->
+  <section class="overview" style="margin-top:18px;">
+    <h2 style="font-family:'Playfair Display',serif;margin:0 0 12px 0;font-size:1.15rem;">System Overview</h2>
+    <div class="card">
+      <p class="small" style="margin-bottom:8px;">Real-time system status and health overview:</p>
+      <ul style="margin:0;padding-left:20px;color:var(--muted);line-height:1.6;">
+        <li>All 12 servers are operational.</li>
+        <li>Backup system last completed: <strong>2 hours ago</strong>.</li>
+        <li>Average response time: <strong>142ms</strong>.</li>
+        <li>Security scans: <strong>No vulnerabilities detected</strong>.</li>
+      </ul>
+    </div>
+  </section>
+</main>
 
-    <!-- Admin Controls -->
-    <section class="space-y-4">
-      <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-300">Admin Controls</h2>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <button class="card hover:shadow-lg flex flex-col items-center justify-center gap-2">
-          <i class="fa-solid fa-user-gear text-indigo-500 text-2xl"></i>
-          <span class="font-medium">Manage Users</span>
-        </button>
-        <button class="card hover:shadow-lg flex flex-col items-center justify-center gap-2">
-          <i class="fa-solid fa-server text-cyan-500 text-2xl"></i>
-          <span class="font-medium">Monitor Servers</span>
-        </button>
-        <button class="card hover:shadow-lg flex flex-col items-center justify-center gap-2">
-          <i class="fa-solid fa-chart-line text-emerald-500 text-2xl"></i>
-          <span class="font-medium">View Reports</span>
-        </button>
-        <button class="card hover:shadow-lg flex flex-col items-center justify-center gap-2">
-          <i class="fa-solid fa-shield-halved text-orange-500 text-2xl"></i>
-          <span class="font-medium">Security Settings</span>
-        </button>
-      </div>
-    </section>
+<footer>
+  <div class="social-icons" style="margin-bottom:10px;font-size:1.2rem;">
+    <a href="https://mail.google.com" aria-label="Email" style="margin-right:10px;color:var(--muted)"><i class="fa-solid fa-envelope"></i></a>
+    <a href="https://www.linkedin.com" aria-label="LinkedIn" style="margin-right:10px;color:var(--muted)"><i class="fab fa-linkedin-in"></i></a>
+    <a href="https://x.com" aria-label="Twitter" style="margin-right:10px;color:var(--muted)"><i class="fab fa-twitter"></i></a>
+    <a href="https://www.facebook.com" aria-label="Facebook" style="margin-right:10px;color:var(--muted)"><i class="fab fa-facebook-f"></i></a>
+    <a href="https://www.instagram.com" aria-label="Instagram" style="color:var(--muted)"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p>© <span id="year"></span> Stackly. All rights reserved.</p>
+</footer>
 
-    <!-- System Overview -->
-    <section class="space-y-4">
-      <h2 class="text-xl font-semibold text-gray-700 dark:text-gray-300">System Overview</h2>
-      <div class="card shadow-md hover:shadow-lg">
-        <p class="text-gray-600 dark:text-gray-300 mb-2">Real-time system status and health overview:</p>
-        <ul class="list-disc pl-5 space-y-2 text-gray-500 dark:text-gray-400">
-          <li>All 12 servers are operational.</li>
-          <li>Backup system last completed: <strong>2 hours ago</strong>.</li>
-          <li>Average response time: <strong>142ms</strong>.</li>
-          <li>Security scans: <strong>No vulnerabilities detected</strong>.</li>
-        </ul>
-      </div>
-    </section>
-  </main>
+<script>
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- FOOTER -->
-  <footer class="border-t border-slate-200 dark:border-gray-700 bg-gradient-to-b from-white to-slate-50 dark:from-gray-900 dark:to-gray-950 py-8 text-center text-sm text-gray-500 dark:text-gray-400">
-    © <span id="year"></span> Stackly Cloud Admin Panel. All rights reserved.
-  </footer>
+  // Theme system (same key as your other pages)
+  const root = document.documentElement;
+  const themeToggle = document.getElementById('themeToggle');
 
-  <!-- SCRIPT -->
-  <script>
-    // Footer Year
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // Theme toggle
-    const html = document.documentElement;
-    const toggleBtn = document.getElementById("theme-toggle");
-    if (localStorage.getItem("theme") === "dark") {
-      html.classList.add("dark");
-      toggleBtn.textContent = "☀️";
-    }
-    toggleBtn.addEventListener("click", () => {
-      html.classList.toggle("dark");
-      const theme = html.classList.contains("dark") ? "dark" : "light";
-      localStorage.setItem("theme", theme);
-      toggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
-    });
-
-    // Load admin
-    const user = JSON.parse(localStorage.getItem("loggedInUser"));
-    const adminEl = document.getElementById("adminName");
-    if (!user || user.role !== "admin") {
-      window.location.href = "login.html";
+  function applyTheme(t){
+    if(t === 'dark'){
+      root.setAttribute('data-theme','dark');
+      themeToggle.setAttribute('aria-pressed','true');
+      themeToggle.innerHTML = '<i class="fa-solid fa-sun"></i>';
     } else {
-      adminEl.textContent = user.name || "Admin";
+      root.removeAttribute('data-theme');
+      themeToggle.setAttribute('aria-pressed','false');
+      themeToggle.innerHTML = '<i class="fa-solid fa-moon"></i>';
     }
+    const hambIcon = document.querySelector('.hamburger i');
+    if(hambIcon) hambIcon.style.color = (t==='dark') ? '#fff' : '#222';
+  }
 
-    // Logout
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("loggedInUser");
-      window.location.href = "login.html";
-    });
-    // Mobile Hamburger toggle
-const hamburger = document.createElement('div');
-hamburger.classList.add('hamburger');
-hamburger.innerHTML = '<i class="ri-menu-line"></i>';
-document.querySelector('header').appendChild(hamburger);
+  const savedTheme = localStorage.getItem('stackly-theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  applyTheme(savedTheme);
 
-const nav = document.querySelector('header nav');
+  themeToggle.addEventListener('click', () => {
+    const current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(current);
+    localStorage.setItem('stackly-theme', current);
+  });
 
-hamburger.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
+  // Hamburger toggle for mobile nav
+  const hamburger = document.querySelector('.hamburger');
+  const nav = document.getElementById('mainNav');
+  hamburger.addEventListener('click', () => {
+    nav.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+  });
 
-// Close dropdowns on mobile when clicking outside
-document.addEventListener('click', function(event) {
-  const dropdowns = document.querySelectorAll('.dropdown-content');
-  dropdowns.forEach(dd => {
-    if (!dd.parentElement.contains(event.target)) {
-      dd.style.display = '';
+  // Load logged in admin
+  const user = JSON.parse(localStorage.getItem('loggedInUser'));
+  const nameEl = document.getElementById('adminName');
+  if(!user || user.role !== 'admin'){
+    // not logged in as admin -> go to login
+    window.location.href = 'login.html';
+  } else {
+    nameEl.textContent = user.name || 'Admin';
+  }
+
+  // Logout
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('loggedInUser');
+    window.location.href = 'login.html';
+  });
+
+  // Close mobile nav when clicking outside (mobile)
+  document.addEventListener('click', function(e){
+    if(window.innerWidth <= 768){
+      if(!nav.contains(e.target) && !document.querySelector('.hamburger').contains(e.target)){
+        nav.classList.remove('active');
+        document.querySelector('.hamburger').setAttribute('aria-expanded', false);
+      }
     }
   });
-});
-  </script>
+</script>
 </body>
 </html>
