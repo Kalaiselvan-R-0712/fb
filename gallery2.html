@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>STACKLY | Where Style Meets Soul</title>
+  <title>STACKLY | Gallery</title>
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,11 +57,25 @@
       box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
     }
 
-    header .logo {
-      font-size: 1.5rem;
-      font-family: 'Playfair Display', serif;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+      vertical-align: middle;
+    }
+
+    .brand-name {
+      font-size: 1.6rem;
       font-weight: 700;
+      letter-spacing: 1px;
       color: var(--gold);
+      font-family: "Poppins", sans-serif;
     }
 
     nav a {
@@ -84,6 +98,18 @@
     }
 
     nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: var(--gold);
+    }
+
+    body.dark-mode nav a.active {
+      color: #f5d76e;
+    }
+
+    nav a.active::after {
       width: 100%;
     }
 
@@ -122,142 +148,74 @@
 
     /* Hero */
     .hero {
-      background: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       text-align: center;
-      color: var(--white);
       position: relative;
+      color: var(--white);
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.55);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 700px;
+      padding: 1rem;
     }
 
     .hero h1 {
       font-size: 3rem;
-      font-family: 'Playfair Display', serif;
       color: var(--gold);
+      font-family: 'Playfair Display', serif;
     }
 
     .hero p {
-      margin-top: 0.8rem;
-      font-size: 1.1rem;
       color: #eee;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
     }
 
-    .hero .cta {
-      margin-top: 1.5rem;
-      background: var(--gold);
-      color: var(--black);
-      border: none;
-      padding: 0.7rem 1.8rem;
-      border-radius: 25px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: 0.3s;
+    /* Gallery */
+    .gallery {
+      padding: 5rem 2rem;
+      max-width: 1300px;
+      margin: 0 auto;
     }
 
-    .hero .cta:hover {
-      background: #f1cc59;
+    .gallery h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 2.5rem;
     }
 
-    /* Collections */
-    .collections {
+    .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
-      padding: 4rem 2rem;
     }
 
-    .collection-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 15px;
-      cursor: pointer;
-    }
-
-    .collection-card img {
+    .gallery-grid img {
       width: 100%;
-      height: 100%;
+      height: 300px;
       object-fit: cover;
-      transition: transform 0.5s;
+      border-radius: 15px;
+      transition: transform 0.4s, box-shadow 0.4s;
     }
 
-    .collection-card:hover img {
-      transform: scale(1.1);
-    }
-
-    .collection-card h3 {
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem;
-      color: var(--white);
-      font-size: 1.5rem;
-      font-family: 'Playfair Display', serif;
-      text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-    }
-
-    /* About */
-    .about {
-      text-align: center;
-      padding: 4rem 2rem;
-    }
-
-    .about h2 {
-      font-family: 'Playfair Display', serif;
-      color: var(--gold);
-      margin-bottom: 1rem;
-    }
-
-    .about p {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      color: var(--muted-light);
-    }
-
-    body.dark-mode .about p {
-      color: var(--muted-dark);
-    }
-
-    /* Contact */
-    .contact {
-      background: var(--gold);
-      color: var(--black);
-      text-align: center;
-      padding: 3rem 2rem;
-    }
-
-    .contact h2 {
-      font-family: 'Playfair Display', serif;
-      margin-bottom: 1rem;
-    }
-
-    .contact button {
-      background: var(--black);
-      color: var(--gold);
-      padding: 0.6rem 1.5rem;
-      border-radius: 20px;
-      border: none;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .contact button:hover {
-      background: #222;
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     }
 
     /* Footer */
@@ -288,79 +246,6 @@
     .social-icons a:hover {
       color: #f5d76e;
     }
-
-    .logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-}
-
-.logo-img {
-  height: 50px;
-  width: auto;
-  vertical-align: middle;
-  transition: transform 0.3s ease;
-}
-
-.logo-img:hover {
-  transform: scale(1.05);
-}
-
-.brand-name {
-  font-size: 1.6rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--text-color);
-  font-family: "Poppins", sans-serif;
-}
-
-  /* Dropdown Styles */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-
-  .dropbtn {
-    text-decoration: none;
-    color: inherit;
-    margin: 0 1rem;
-    font-weight: 500;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--bg-light);
-    min-width: 120px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    border-radius: 8px;
-    z-index: 1000;
-  }
-
-  .dropdown-content a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 500;
-  }
-
-  .dropdown-content a:hover {
-    background: var(--gold);
-    color: var(--black);
-  }
-
-  .dropdown.show .dropdown-content {
-    display: block;
-  }
   </style>
   <style>
 .shop-grid {
@@ -486,69 +371,51 @@ header {
 
 </style>
 </head>
+
 <body>
   <header>
-  <a href="homepage2.html" class="logo">
+    <a href="homepage2.html" class="logo">
       <img src="assets/logo/the_stackly_logo.jpg" alt="STACKLY Logo" class="logo-img">
       <span class="brand-name">STACKLY</span>
-  </a>
-  <nav>
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Home <i class="ri-arrow-down-s-line"></i></a>
-      <div class="dropdown-content">
-        <a href="index.html">Home:1</a>
-      </div>
+    </a>
+    <nav>
+      <a href="homepage2.html">Home</a>
+      <a href="shop2.html">Shop</a>
+      <a href="about2.html">About</a>
+      <a href="gallery2.html" class="active">Gallery</a>
+      <a href="contact2.html">Contact</a>
+      <a href="customer-dashboard.html">Dashboard</a>
+    </nav>
+    <div class="btn-group">
+      <a href="login.html" class="btn">Login</a>
+      <a href="register.html" class="btn">Register</a>
+      <i id="modeToggle" class="ri-moon-line"></i>
     </div>
-    <a href="shop2.html">Shop</a>
-    <a href="about2.html">About</a>
-    <a href="gallery2.html">Gallery</a>
-    <a href="contact2.html">Contact</a>
-    <a href="customer-dashboard.html">Dashboard</a>
-  </nav>
-  <div class="btn-group">
-    <a href="login.html" class="btn">Login</a>
-    <a href="register.html" class="btn">Register</a>
-    <i id="modeToggle" class="ri-moon-line"></i>
-  </div>
   </header>
 
   <section class="hero">
     <div class="hero-content">
-      <h1>Where Style Meets Soul</h1>
-      <p>Discover timeless fashion crafted for the modern spirit.</p>
-      <a href="shop2.html"><button class="cta">Explore Collections</button></a>
+      <h1>Gallery</h1>
+      <p>Discover the world of STACKLY — where fashion becomes art.</p>
     </div>
   </section>
 
-  <section class="collections">
-    <div class="collection-card">
-      <img src="https://images.unsplash.com/photo-1603252109303-2751441dd157?auto=format&fit=crop&w=800&q=80" alt="Luxury Wear">
-      <h3>Luxury Wear</h3>
+  <section class="gallery">
+    <h2>Our Style Showcase</h2>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 1">
+      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 2">
+      <img src="https://images.unsplash.com/photo-1519985176271-adb1088fa94c?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 3">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 4">
+      <img src="https://images.unsplash.com/photo-1520694478166-daaaaec95b69?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 5">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 6">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 7">
+      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 8">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 9">
+      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 10">
+      <img src="https://images.unsplash.com/photo-1519744792095-2f2205e87b6f?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 11">
+      <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80" alt="Gallery Image 12">
     </div>
-    <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80"alt="Street Wear">
-        <h3>Street Wear</h3>
-    </div>
-    <div class="collection-card">
-      <img src="https://images.unsplash.com/photo-1520694478166-daaaaec95b69?auto=format&fit=crop&w=800&q=80" alt="Ethnic Elegance">
-      <h3>Ethnic Elegance</h3>
-    </div>
-    <div class="collection-card">
-      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Modern Chic">
-      <h3>Modern Chic</h3>
-    </div>
-  </section>
-
-  <section class="about">
-    <h2>About STACKLY</h2>
-    <p>STACKLY blends elegance and edge, uniting luxury craftsmanship with everyday style. Fashion that moves with your soul and redefines your presence.</p>
-    <a href="about2.html"><button class="btn">Know More</button></a>
-  </section>
-
-  <section class="contact">
-    <h2>Get In Touch</h2>
-    <p>Have questions? Let’s design your next look together.</p>
-    <a href="contact2.html"><button>Contact Us</button></a>
   </section>
 
   <footer>
@@ -565,12 +432,10 @@ header {
   <script>
     const toggle = document.getElementById('modeToggle');
     const body = document.body;
-
     if (localStorage.getItem('mode') === 'dark') {
       body.classList.add('dark-mode');
       toggle.classList.replace('ri-moon-line', 'ri-sun-line');
     }
-
     toggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const dark = body.classList.contains('dark-mode');
@@ -578,24 +443,7 @@ header {
       toggle.classList.toggle('ri-sun-line', dark);
       toggle.classList.toggle('ri-moon-line', !dark);
     });
-  </script>
-  <script>
-  // Dropdown toggle
-  const dropbtn = document.querySelector('.dropbtn');
-  const dropdown = document.querySelector('.dropdown');
-
-  dropbtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    dropdown.classList.toggle('show');
-  });
-
-  // Close dropdown if clicked outside
-  window.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('show');
-    }
-  });
-  // Mobile Hamburger toggle
+    // Mobile Hamburger toggle
 const hamburger = document.createElement('div');
 hamburger.classList.add('hamburger');
 hamburger.innerHTML = '<i class="ri-menu-line"></i>';
