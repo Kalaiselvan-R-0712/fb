@@ -37,6 +37,7 @@
       color: var(--text-light);
     }
 
+    /* Header */
     header {
       position: fixed;
       top: 0;
@@ -50,6 +51,7 @@
       z-index: 1000;
       transition: background 0.4s, color 0.4s;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
     }
 
     body.dark-mode header {
@@ -107,15 +109,15 @@
     }
 
     nav a.active {
-    color: var(--gold);
+      color: var(--gold);
     }
 
     body.dark-mode nav a.active {
-    color: #f5d76e;
+      color: #f5d76e;
     }
 
     nav a.active::after {
-    width: 100%;
+      width: 100%;
     }
 
     .btn-group {
@@ -153,40 +155,40 @@
 
     /* Hero */
     .hero {
-      background: url('https://images.unsplash.com/photo-1520975911098-6a6e1e7b70b9?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       height: 80vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
       text-align: center;
-      color: var(--white);
       position: relative;
+      color: var(--white);
     }
 
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.45);
+      background: rgba(0, 0, 0, 0.55);
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
       max-width: 700px;
+      padding: 1rem;
     }
 
     .hero h1 {
       font-size: 3rem;
-      font-family: 'Playfair Display', serif;
       color: var(--gold);
+      font-family: 'Playfair Display', serif;
     }
 
     .hero p {
-      margin-top: 0.8rem;
-      font-size: 1.1rem;
       color: #eee;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
     }
 
     /* Product grid */
@@ -195,47 +197,29 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
       padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto 6rem;
     }
 
     .product-card {
       border-radius: 15px;
       overflow: hidden;
       position: relative;
-      cursor: pointer;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow .2s;
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      display:flex;
+      flex-direction:column;
+      cursor:default;
     }
 
-    .product-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 350px;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .product-card:hover img {
-      transform: scale(1.08);
-    }
-
-    .product-info {
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .product-info h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-    }
-
-    .product-info p {
-      margin: 0.3rem 0;
-      color: var(--muted-light);
-    }
-
+    .product-card:hover{ transform:translateY(-6px); box-shadow: 0 20px 45px rgba(0,0,0,0.12); }
+    .product-card img { width:100%; height:320px; object-fit:cover; display:block; transition:transform .5s; }
+    .product-card:hover img { transform:scale(1.05); }
+    .product-info { padding:1rem; text-align:center; flex:1; display:flex; flex-direction:column; gap:.5rem; }
+    .product-info h3{ font-family:'Playfair Display',serif; color:var(--gold); margin:0; }
+    .product-info p{ color:var(--muted-light); margin:0; }
+    .product-info .price { margin-top:auto; font-weight:800; color:var(--gold); font-size:1.05rem; }
     .product-info button {
       background: var(--gold);
       border: none;
@@ -243,12 +227,10 @@
       border-radius: 20px;
       font-weight: 600;
       cursor: pointer;
-      transition: 0.3s;
+      transition: 0.18s;
+      margin-top:0.6rem;
     }
-
-    .product-info button:hover {
-      background: #f1cc59;
-    }
+    .product-info button:hover { background:#f1cc59; }
 
     /* Footer */
     footer {
@@ -264,321 +246,194 @@
       color: var(--text-dark);
     }
 
-    .social-icons {
-      margin-top: 1rem;
-    }
+    .social-icons { margin-top:1rem; }
+    .social-icons a { color:var(--gold); font-size:1.4rem; margin:0 0.5rem; transition:0.3s; }
+    .social-icons a:hover { color:#f5d76e; }
 
-    .social-icons a {
-      color: var(--gold);
-      font-size: 1.4rem;
-      margin: 0 0.5rem;
-      transition: 0.3s;
-    }
+    /* --- HEADER RESPONSIVE FIXES --- */
+    header { flex-wrap: wrap; }
 
-    .social-icons a:hover {
-      color: #f5d76e;
+    /* Dropdown & hamburger */
+    .hamburger { display:none; font-size:1.8rem; cursor:pointer; z-index:1002; }
+
+    @media (max-width: 1024px) { .logo-img { height: 40px; } nav { gap:0.5rem; } }
+    @media (max-width: 768px) {
+      nav { display: none; width:100%; flex-direction: column; margin-top:0.5rem; }
+      nav a { padding:0.7rem 0; width:100%; text-align:center; }
+      .hamburger { display:block; }
+      nav.active { display:flex; }
+      .btn-group { margin-top:0.5rem; width:100%; justify-content:center; }
+      header { padding:0.5rem 1rem; }
     }
+    @media (max-width: 480px) { .brand-name { font-size:1.3rem; } .logo-img { height:35px; } }
   </style>
-  <style>
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Small devices (phones) */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 2rem; }
-  .shop-grid { gap: 1rem; }
-}
-
-/* Tablets */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .hero h1 { font-size: 2.5rem; }
-  .shop-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-}
-
-/* Large screens (laptops, desktops) */
-@media (min-width: 1025px) {
-  .hero h1 { font-size: 3rem; }
-}
-
-img, video {
-  max-width: 100%;
-  height: auto;
-}
-
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-
-/* --- HEADER RESPONSIVE FIXES --- */
-header {
-  flex-wrap: wrap;
-}
-
-/* Dropdown adjustments */
-.nav-item.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--bg-light);
-  min-width: 150px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  flex-direction: column;
-  z-index: 1001;
-}
-
-.dropdown-content a {
-  padding: 0.5rem 1rem;
-  display: block;
-  color: var(--text-dark);
-}
-
-.nav-item.dropdown:hover .dropdown-content {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Hamburger menu for mobile */
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  z-index: 1002;
-}
-
-/* NAV and BUTTON adjustments for tablets & mobile */
-@media (max-width: 1024px) {
-  nav {
-    gap: 0.5rem;
-  }
-  .logo-img { height: 40px; }
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 0.5rem;
-  }
-
-  nav a, .dropdown-content a {
-    padding: 0.7rem 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  .btn-group {
-    margin-top: 0.5rem;
-    width: 100%;
-    justify-content: center;
-  }
-
-  header {
-    flex-wrap: wrap;
-    padding: 0.5rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-name { font-size: 1.3rem; }
-  .logo-img { height: 35px; }
-}
-
-</style>
 </head>
-
 <body>
-  <header>
-    <a href="homepage2.html" class="logo">
-      <img src="assets/logo/the_stackly_logo.jpg" alt="STACKLY Logo" class="logo-img">
-      <span class="brand-name">STACKLY</span>
-    </a>
-    <nav>
-      <a href="homepage2.html">Home</a>
-      <a href="shop2.html" class="active">Shop</a>
-      <a href="about2.html">About</a>
-      <a href="gallery2.html">Gallery</a>
-      <a href="contact2.html">Contact</a>
-      <a href="customer-dashboard.html">Dashboard</a>
-    </nav>
-    <div class="btn-group">
-      <a href="login.html" class="btn">Login</a>
-      <a href="register.html" class="btn">Register</a>
-      <i id="modeToggle" class="ri-moon-line"></i>
-    </div>
-  </header>
 
-<section class="hero" style="
-  background: url('https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1600&q=80') 
-  center/cover no-repeat;
-  position: relative;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: #fff;">
-  
-  <div style="
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 1;">
+<header>
+  <a href="homepage2.html" class="logo">
+    <img src="assets/logo/the_stackly_logo.jpg" alt="STACKLY Logo" class="logo-img">
+    <span class="brand-name">STACKLY</span>
+  </a>
+
+  <nav>
+    <a href="homepage2.html">Home</a>
+    <a href="shop2.html" class="active">Shop</a>
+    <a href="about2.html">About</a>
+    <a href="gallery2.html">Gallery</a>
+    <a href="contact2.html">Contact</a>
+    <a href="customer-dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="btn-group">
+    <a href="login.html" class="btn">Login</a>
+    <a href="register.html" class="btn">Register</a>
+    <i id="modeToggle" class="ri-moon-line"></i>
   </div>
+</header>
 
-  <div class="hero-content" style="position: relative; z-index: 2;">
-    <h1 style="font-size: 3rem; color: #d4af37; font-family: 'Playfair Display', serif;">
-      Shop the Collection
-    </h1>
-    <p style="font-size: 1.1rem; color: #eee; margin-top: 0.8rem;">
-      Curated looks crafted to elevate your style statement.
-    </p>
+<section class="hero">
+  <div class="hero-content">
+    <h1>Shop the Collection</h1>
+    <p>Curated looks crafted to elevate your style statement.</p>
   </div>
 </section>
 
-  <section class="shop-grid">
-    <div class="product-card">
+  <!-- Product Grid: restored full set (8 cards) with prices -->
+  <section class="shop-grid" aria-label="Products">
+    <div class="product-card" data-sku="urban-casual">
       <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?auto=format&fit=crop&w=800&q=80" alt="Urban Casual">
       <div class="product-info">
         <h3>Urban Casual</h3>
         <p>Modern comfort for daily wear.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹1,499</div>
+        <button type="button" data-price="1499">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="classic-elegance">
       <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Classic Elegance">
       <div class="product-info">
         <h3>Classic Elegance</h3>
         <p>Timeless outfits that define class.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹1,099</div>
+        <button type="button" data-price="1099">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="boho-style">
       <img src="https://images.unsplash.com/photo-1520694478166-daaaaec95b69?auto=format&fit=crop&w=800&q=80" alt="Boho Style">
       <div class="product-info">
         <h3>Boho Style</h3>
         <p>Unleash your inner free spirit.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹899</div>
+        <button type="button" data-price="899">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="modern-minimal">
       <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=800&q=80" alt="Modern Minimal">
       <div class="product-info">
         <h3>Modern Minimal</h3>
         <p>Simple, sleek, and stunning.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹1,299</div>
+        <button type="button" data-price="1299">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="luxury-streetwear">
       <img src="https://images.unsplash.com/photo-1537832816519-689ad163238b?auto=format&fit=crop&w=800&q=80" alt="Luxury Streetwear">
       <div class="product-info">
         <h3>Luxury Streetwear</h3>
         <p>Street style meets sophistication.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹1,599</div>
+        <button type="button" data-price="1599">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="evening-glam">
       <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Evening Glam">
       <div class="product-info">
         <h3>Evening Glam</h3>
         <p>Make every night unforgettable.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹1,899</div>
+        <button type="button" data-price="1899">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="ethnic-essence">
       <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" alt="Ethnic Essence">
       <div class="product-info">
         <h3>Ethnic Essence</h3>
         <p>Traditional elegance reimagined.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹1,199</div>
+        <button type="button" data-price="1199">Add to Cart</button>
       </div>
     </div>
-    <div class="product-card">
+
+    <div class="product-card" data-sku="designer-edit">
       <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=800&q=80" alt="Designer Edit">
       <div class="product-info">
         <h3>Designer Edit</h3>
         <p>Exclusive connoisseur pieces.</p>
-        <button>Add to Cart</button>
+        <div class="price">₹2,199</div>
+        <button type="button" data-price="2199">Add to Cart</button>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p>© 2025 STACKLY | All Rights Reserved</p>
-    <div class="social-icons">
-      <a href="https://mail.google.com"><i class="ri-mail-line"></i></a>
-      <a href="https://www.linkedin.com"><i class="ri-linkedin-fill"></i></a>
-      <a href="https://x.com"><i class="ri-twitter-x-line"></i></a>
-      <a href="https://www.facebook.com"><i class="ri-facebook-fill"></i></a>
-      <a href="https://www.instagram.com"><i class="ri-instagram-line"></i></a>
-    </div>
-  </footer>
+<footer>
+  <p>© 2025 STACKLY | All Rights Reserved</p>
+  <div class="social-icons">
+    <a href="https://mail.google.com"><i class="ri-mail-line"></i></a>
+    <a href="https://www.linkedin.com"><i class="ri-linkedin-fill"></i></a>
+    <a href="https://x.com"><i class="ri-twitter-x-line"></i></a>
+    <a href="https://www.facebook.com"><i class="ri-facebook-fill"></i></a>
+    <a href="https://www.instagram.com"><i class="ri-instagram-line"></i></a>
+  </div>
+</footer>
 
-  <script>
-    const toggle = document.getElementById('modeToggle');
-    const body = document.body;
+<div class="toast-wrap" id="toasts" aria-live="polite"></div>
 
-    if (localStorage.getItem('mode') === 'dark') {
-      body.classList.add('dark-mode');
-      toggle.classList.replace('ri-moon-line', 'ri-sun-line');
-    }
+<script>
+  // Theme toggle
+  const toggle = document.getElementById('modeToggle');
+  const body = document.body;
+  if(localStorage.getItem('mode')==='dark'){body.classList.add('dark-mode'); toggle.classList.replace('ri-moon-line','ri-sun-line');}
+  toggle.addEventListener('click',()=>{body.classList.toggle('dark-mode'); const dark=body.classList.contains('dark-mode'); localStorage.setItem('mode',dark?'dark':'light'); toggle.classList.toggle('ri-sun-line',dark); toggle.classList.toggle('ri-moon-line',!dark);});
 
-    toggle.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      const dark = body.classList.contains('dark-mode');
-      localStorage.setItem('mode', dark ? 'dark' : 'light');
-      toggle.classList.toggle('ri-sun-line', dark);
-      toggle.classList.toggle('ri-moon-line', !dark);
+  // Hamburger
+  const hamburger=document.createElement('div'); hamburger.classList.add('hamburger'); hamburger.innerHTML='<i class="ri-menu-line"></i>'; document.querySelector('header').appendChild(hamburger);
+  const nav=document.querySelector('header nav');
+  hamburger.addEventListener('click',()=>{nav.classList.toggle('active');});
+
+  // Toast helper
+  function showToast(message){ const wrap=document.getElementById('toasts'); const t=document.createElement('div'); t.className='toast'; t.textContent=message; wrap.appendChild(t); requestAnimationFrame(()=>t.classList.add('show')); setTimeout(()=>{t.classList.remove('show'); setTimeout(()=>t.remove(),220);},900); }
+
+  // Add to cart
+  (function(){
+    const productCards=document.querySelectorAll('.shop-grid .product-card');
+    productCards.forEach(card=>{
+      const btn=card.querySelector('button');
+      btn.addEventListener('click',()=>{
+        const name=card.querySelector('h3').innerText.trim();
+        const desc=card.querySelector('p').innerText.trim();
+        const img=card.querySelector('img').src;
+        const price=Number(btn.dataset.price)||parseFloat(card.querySelector('.price')?.innerText.replace(/[^\d.]/g,''))||0;
+        let cart=[];
+        try{cart=JSON.parse(localStorage.getItem('stackly-cart2'))||[];}catch(e){}
+        const found=cart.find(i=>i.name===name);
+        if(found){found.quantity=(Number(found.quantity)||0)+1;}else{cart.push({name,desc,img,price,quantity:1});}
+        localStorage.setItem('stackly-cart2',JSON.stringify(cart));
+        showToast('Item added to cart!');
+        setTimeout(()=>{window.location.href='cart2.html';},900);
+      });
     });
-  </script>
+  })();
 
-    <script>
-  // Redirect all "Add to Cart" buttons to 404.html
-  document.querySelectorAll('.shop-grid button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      window.location.href = '404.html';
-    });
-  });
-  // Mobile Hamburger toggle
-const hamburger = document.createElement('div');
-hamburger.classList.add('hamburger');
-hamburger.innerHTML = '<i class="ri-menu-line"></i>';
-document.querySelector('header').appendChild(hamburger);
-
-const nav = document.querySelector('header nav');
-
-hamburger.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
-
-// Close dropdowns on mobile when clicking outside
-document.addEventListener('click', function(event) {
-  const dropdowns = document.querySelectorAll('.dropdown-content');
-  dropdowns.forEach(dd => {
-    if (!dd.parentElement.contains(event.target)) {
-      dd.style.display = '';
-    }
-  });
-});
+  // Nav active highlight
+  const currentPath=window.location.pathname.split("/").pop();
+  document.querySelectorAll('nav a').forEach(a=>{if(a.getAttribute('href')===currentPath){a.classList.add('active');}else{a.classList.remove('active');}});
 </script>
-
-
 </body>
 </html>

@@ -1,133 +1,539 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Login | Stackly Cloud</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STACKLY | Shop the Collection</title>
 
-<style>
-:root{--bg:#fafafa;--card:#fff;--text:#222;--muted:#6b6b6b;--accent:#f72585;--accent-dark:#d31e69;--glass:rgba(255,255,255,0.65);--radius:18px;}
-[data-theme='dark']{--bg:#0b0b0c;--card:#0f0f10;--text:#f1f1f1;--muted:#bdbdbd;--accent:#ff6aa3;--accent-dark:#cc578c;--glass:rgba(255,255,255,0.04);}
-*{box-sizing:border-box;}
-body{margin:0;padding-top:88px;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);transition:0.25s;}
-header{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:0.5rem 1rem;background:linear-gradient(180deg,var(--glass),rgba(0,0,0,0));backdrop-filter:blur(6px);z-index:1200;flex-wrap:wrap;}
-.logo a{display:flex;align-items:center;gap:0.7rem;text-decoration:none;color:var(--accent);font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;}
-.logo img{height:40px;width:auto;}
-.actions{display:flex;gap:0.8rem;align-items:center;}
-.actions button{padding:0.5rem 1.2rem;border-radius:25px;font-weight:600;font-size:0.95rem;border:2px solid transparent;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:0.3s;}
-.actions button#themeToggle{background:transparent;color:var(--text);border:2px solid var(--text);}
-.actions button#themeToggle:hover{background:var(--accent);border-color:var(--accent);color:white;}
-main{max-width:1200px;margin:4rem auto;padding:0 6vw;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:60vh;text-align:center;}
-.role-toggle{display:inline-flex;background:var(--card);border-radius:9999px;padding:0.25rem;box-shadow:0 4px 20px rgba(0,0,0,0.08);margin-bottom:2rem;}
-.role-toggle button{padding:0.6rem 1.5rem;border:none;background:transparent;border-radius:9999px;font-weight:600;font-size:0.95rem;color:var(--text);cursor:pointer;transition:0.3s;}
-.role-toggle button.active{background:var(--accent);color:#fff;}
-.login-card{background:var(--card);box-shadow:0 8px 30px rgba(0,0,0,0.08);border-radius:var(--radius);padding:2rem 2.5rem;width:100%;max-width:420px;transition:0.3s ease;}
-.login-card:hover{transform:translateY(-4px);box-shadow:0 20px 45px rgba(0,0,0,0.12);}
-.login-card h1{font-family:'Playfair Display',serif;font-size:2rem;margin-bottom:1.5rem;color:var(--accent);}
-.input-group{position:relative;width:100%;margin:0.6rem 0;}
-.input-group input{width:100%;padding:0.8rem 1rem;padding-right:2.8rem;border:2px solid var(--muted);border-radius:var(--radius);font-size:1rem;background:transparent;color:var(--text);transition:0.3s;}
-.input-group input:focus{outline:none;border-color:var(--accent);}
-.input-group .toggle-password{position:absolute;right:1rem;top:50%;transform:translateY(-50%);cursor:pointer;color:var(--muted);transition:0.2s;}
-.input-group .toggle-password:hover{color:var(--accent);}
-.login-card button{width:100%;padding:0.9rem;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-weight:600;font-size:1rem;margin-top:1rem;cursor:pointer;transition:0.3s;}
-.login-card button:hover{background:var(--accent-dark);}
-.login-card p{color:var(--muted);margin-top:1rem;font-size:0.95rem;}
-.login-card a{color:var(--accent);text-decoration:none;font-weight:600;}
-.login-card a:hover{text-decoration:underline;}
-footer{background:var(--card);padding:2.5rem 6vw;text-align:center;color:var(--muted);font-size:0.95rem;}
-footer .social-icons{margin-bottom:1.4rem;font-size:1.6rem;display:flex;justify-content:center;gap:1.2rem;}
-footer .social-icons a{color:var(--muted);transition:0.3s;}
-footer .social-icons a:hover{color:var(--accent);}
-</style>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Remix Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --gold: #d4af37;
+      --black: #000;
+      --white: #fff;
+      --text-dark: #111;
+      --text-light: #f5f5f5;
+      --bg-light: #ffffff;
+      --bg-dark: #0b0b0b;
+      --muted-light: #555;
+      --muted-dark: #bbb;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      transition: background 0.4s, color 0.4s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      flex-wrap: wrap;
+    }
+
+    body.dark-mode header {
+      background: var(--bg-dark);
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+      vertical-align: middle;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.05);
+    }
+
+    .brand-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--gold);
+      font-family: "Poppins", sans-serif;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      margin: 0 1rem;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: var(--gold);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a.active {
+      color: var(--gold);
+    }
+
+    body.dark-mode nav a.active {
+      color: #f5d76e;
+    }
+
+    nav a.active::after {
+      width: 100%;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    #modeToggle {
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+
+    #modeToggle:hover {
+      transform: rotate(25deg);
+    }
+
+    /* Hero */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      color: var(--white);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 1rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero p {
+      color: #eee;
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Product grid */
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto 6rem;
+    }
+
+    .product-card {
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow .2s;
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+      display:flex;
+      flex-direction:column;
+      cursor:default;
+    }
+
+    .product-card:hover{ transform:translateY(-6px); box-shadow: 0 20px 45px rgba(0,0,0,0.12); }
+    .product-card img { width:100%; height:320px; object-fit:cover; display:block; transition:transform .5s; }
+    .product-card:hover img { transform:scale(1.05); }
+    .product-info { padding:1rem; text-align:center; flex:1; display:flex; flex-direction:column; gap:.5rem; }
+    .product-info h3{ font-family:'Playfair Display',serif; color:var(--gold); margin:0; }
+    .product-info p{ color:var(--muted-light); margin:0; }
+    .product-info .price { margin-top:auto; font-weight:800; color:var(--gold); font-size:1.05rem; }
+    .product-info button {
+      background: var(--gold);
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.18s;
+      margin-top:0.6rem;
+    }
+    .product-info button:hover { background:#f1cc59; }
+
+    /* Footer */
+    footer {
+      background: var(--bg-dark);
+      color: var(--text-light);
+      text-align: center;
+      padding: 2rem 1rem;
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body:not(.dark-mode) footer {
+      background: var(--bg-light);
+      color: var(--text-dark);
+    }
+
+    .social-icons { margin-top:1rem; }
+    .social-icons a { color:var(--gold); font-size:1.4rem; margin:0 0.5rem; transition:0.3s; }
+    .social-icons a:hover { color:#f5d76e; }
+
+    /* --- HEADER RESPONSIVE FIXES --- */
+    header { flex-wrap: wrap; }
+
+    /* Dropdown & hamburger */
+    .hamburger { display:none; font-size:1.8rem; cursor:pointer; z-index:1002; }
+
+    @media (max-width: 1024px) { .logo-img { height: 40px; } nav { gap:0.5rem; } }
+    @media (max-width: 768px) {
+      nav { display: none; width:100%; flex-direction: column; margin-top:0.5rem; }
+      nav a { padding:0.7rem 0; width:100%; text-align:center; }
+      .hamburger { display:block; }
+      nav.active { display:flex; }
+      .btn-group { margin-top:0.5rem; width:100%; justify-content:center; }
+      header { padding:0.5rem 1rem; }
+    }
+    @media (max-width: 480px) { .brand-name { font-size:1.3rem; } .logo-img { height:35px; } }
+  </style>
 </head>
-
 <body>
 
 <header>
-  <div class="logo">
-    <a href="index.html"><img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo"><span>STACKLY</span></a>
-  </div>
-  <div class="actions">
-    <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+  <a href="homepage2.html" class="logo">
+    <img src="assets/logo/the_stackly_logo.jpg" alt="STACKLY Logo" class="logo-img">
+    <span class="brand-name">STACKLY</span>
+  </a>
+
+  <nav>
+    <a href="homepage2.html">Home</a>
+    <a href="shop2.html" class="active">Shop</a>
+    <a href="about2.html">About</a>
+    <a href="gallery2.html">Gallery</a>
+    <a href="contact2.html">Contact</a>
+    <a href="customer-dashboard.html">Dashboard</a>
+  </nav>
+
+  <div class="btn-group">
+    <a href="login.html" class="btn">Login</a>
+    <a href="register.html" class="btn">Register</a>
+    <i id="modeToggle" class="ri-moon-line"></i>
   </div>
 </header>
 
-<main>
-<div class="role-toggle">
-<button id="customerBtn" class="active">Customer</button>
-<button id="adminBtn">Admin</button>
-</div>
+  <main class="container" role="main">
+    <h1 class="cart-title">Your Cart</h1>
+    <p class="cart-sub">Manage your chosen items. Update quantities or remove items.</p>
 
-<div class="login-card">
-<h1 id="loginTitle">Customer Login</h1>
-<form id="loginForm">
-<div class="input-group">
-<input type="email" id="email" placeholder="Email Address" required>
-</div>
-<div class="input-group">
-<input type="password" id="password" placeholder="Password" required>
-<i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
-</div>
-<button type="submit">Login</button>
-<p>Don’t have an account? <a href="register.html">Register</a></p>
-<p><a href="index.html">Continue as Guest</a></p>
-</form>
-</div>
-</main>
+    <section id="cartGrid" class="cart-grid" aria-live="polite"></section>
 
-<footer>
-<div class="social-icons">
-<a href="#"><i class="fa-solid fa-envelope"></i></a>
-<a href="#"><i class="fab fa-linkedin-in"></i></a>
-<a href="#"><i class="fab fa-twitter"></i></a>
-<a href="#"><i class="fab fa-facebook-f"></i></a>
-<a href="#"><i class="fab fa-instagram"></i></a>
-</div>
-<p>&copy; 2025 Stackly. All rights reserved.</p>
-</footer>
+    <div id="empty" class="empty" style="display:none;margin-top:12px;">
+      <strong>Your cart is empty</strong>
+      <div style="margin-top:0.6rem;">
+        <a href="shop2.html" class="btn" style="text-decoration:none">Continue Shopping</a>
+      </div>
+    </div>
+  </main>
 
-<script>
-// Theme toggle
-const themeToggle=document.getElementById('themeToggle');
-const root=document.documentElement;
-function applyTheme(theme){if(theme==='dark'){root.setAttribute('data-theme','dark');themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';}
-else{root.removeAttribute('data-theme');themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';}}
-const savedTheme=localStorage.getItem('stackly-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
-applyTheme(savedTheme);
-themeToggle.addEventListener('click',()=>{const current=root.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(current);localStorage.setItem('stackly-theme',current);});
+  <aside id="summary" class="summary-sticky" style="display:none" aria-label="Order summary">
+    <div class="summary-top">
+      <div>
+        <div style="font-size:0.95rem;color:var(--muted)">Order Summary</div>
+        <div class="summary-total" id="summaryTotal">₹0.00</div>
+      </div>
+      <div style="font-size:0.9rem;color:var(--muted)"><span id="summaryCount">0</span> items</div>
+    </div>
+    <div class="summary-line"><span>Subtotal</span><span id="subtotal">₹0.00</span></div>
+    <div class="summary-line"><span>Tax (5%)</span><span id="tax">₹0.00</span></div>
+    <div class="summary-line" style="font-weight:800;margin-top:6px"><span>Total</span><span id="total">₹0.00</span></div>
+    <div class="summary-actions">
+      <a id="continueBtn" class="btn btn-ghost" href="shop2.html" style="text-align:center;text-decoration:none">Continue Shopping</a>
+      <button id="checkoutBtn" class="btn-primary">Checkout</button>
+      <button id="clearBtn" class="btn-ghost">Clear Cart</button>
+    </div>
+  </aside>
 
-// Role toggle
-const customerBtn=document.getElementById('customerBtn');
-const adminBtn=document.getElementById('adminBtn');
-const loginTitle=document.getElementById('loginTitle');
-let currentRole='customer';
-customerBtn.onclick=()=>{customerBtn.classList.add('active');adminBtn.classList.remove('active');loginTitle.textContent='Customer Login';currentRole='customer';};
-adminBtn.onclick=()=>{adminBtn.classList.add('active');customerBtn.classList.remove('active');loginTitle.textContent='Admin Login';currentRole='admin';};
+  <footer>
+    <p>© 2025 STACKLY | All Rights Reserved</p>
+    <div class="social-icons" aria-hidden="true">
+      <a href="mailto:"><i class="ri-mail-line"></i></a>
+      <a href="#"><i class="ri-linkedin-fill"></i></a>
+      <a href="#"><i class="ri-twitter-x-line"></i></a>
+      <a href="#"><i class="ri-facebook-fill"></i></a>
+      <a href="#"><i class="ri-instagram-line"></i></a>
+    </div>
+  </footer>
 
-// Password toggle
-const togglePassword=document.getElementById('togglePassword');
-const passwordInput=document.getElementById('password');
-togglePassword.addEventListener('click',()=>{const type=passwordInput.getAttribute('type')==='password'?'text':'password';passwordInput.setAttribute('type',type);togglePassword.classList.toggle('fa-eye-slash');});
+  <div class="toast-wrap" id="toasts" aria-live="polite" aria-atomic="true"></div>
 
-// Login logic
-document.getElementById('loginForm').addEventListener('submit',function(e){
-e.preventDefault();
-const email=document.getElementById('email').value.trim().toLowerCase();
-const password=passwordInput.value;
+  <script>
+    /***********************
+     THEME TOGGLE (same behavior)
+    ***********************/
+    (function(){
+      const toggle = document.getElementById('modeToggle');
+      const body = document.body;
+      if (!toggle) return;
+      if (localStorage.getItem('mode') === 'dark') {
+        body.classList.add('dark-mode');
+        toggle.classList.replace('ri-moon-line','ri-sun-line');
+      }
+      toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const dark = body.classList.contains('dark-mode');
+        localStorage.setItem('mode', dark ? 'dark' : 'light');
+        toggle.classList.toggle('ri-sun-line', dark);
+        toggle.classList.toggle('ri-moon-line', !dark);
+      });
+    })();
 
-const users=JSON.parse(localStorage.getItem('registeredUsers'))||[];
-const user=users.find(u=>u.email===email && u.password===password && u.role===currentRole);
+    /***********************
+     Toast helper
+    ***********************/
+    const toasts = document.getElementById('toasts');
+    function showToast(message){
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.textContent = message;
+      toasts.appendChild(t);
+      requestAnimationFrame(()=> t.classList.add('show'));
+      setTimeout(()=> {
+        t.classList.remove('show');
+        setTimeout(()=> t.remove(), 220);
+      }, 2200);
+    }
 
-if(user){
-  localStorage.setItem('loggedInUser',JSON.stringify(user));
-  if(user.role==='admin'){window.location.href='admin-dashboard.html';}
-  else{window.location.href='customer-dashboard.html';}
-}else{
-  alert('Invalid credentials or wrong role selected!');
-}
-});
-</script>
+    /***********************
+     Cart storage helpers (reads same keys)
+    ***********************/
+    const STORAGE_KEYS = ['stackly-cart2','cart','stackly-cart'];
+    function readCart(){
+      for (const k of STORAGE_KEYS){
+        const raw = localStorage.getItem(k);
+        if (raw){
+          try {
+            const parsed = JSON.parse(raw);
+            return parsed.map(item => {
+              return {
+                name: item.name || item.title || 'Product',
+                desc: item.desc || item.description || item.desc || '',
+                img: item.img || item.image || item.picture || '',
+                price: (typeof item.price === 'number') ? item.price : (parseFloat(item.price) || item.priceInr || 0),
+                quantity: item.quantity || item.qty || item.quantity || 1
+              };
+            });
+          } catch(e){ continue; }
+        }
+      }
+      return [];
+    }
+
+    function writeCart(cart){
+      localStorage.setItem('stackly-cart2', JSON.stringify(cart));
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
+    /***********************
+     UI & State
+    ***********************/
+    const grid = document.getElementById('cartGrid');
+    const emptyBox = document.getElementById('empty');
+    const summary = document.getElementById('summary');
+    const subtotalEl = document.getElementById('subtotal');
+    const taxEl = document.getElementById('tax');
+    const totalEl = document.getElementById('total');
+    const summaryTotalEl = document.getElementById('summaryTotal');
+    const summaryCountEl = document.getElementById('summaryCount');
+    const clearBtn = document.getElementById('clearBtn');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    let cart = readCart();
+    cart = cart.map(it => ({
+      name: it.name,
+      desc: it.desc || '',
+      img: it.img || '',
+      price: Number(it.price) || 0,
+      quantity: Number(it.quantity) || 1
+    }));
+
+    function render(){
+      grid.innerHTML = '';
+      if (!cart || cart.length === 0){
+        emptyBox.style.display = 'block';
+        summary.style.display = 'none';
+        return;
+      }
+      emptyBox.style.display = 'none';
+      summary.style.display = 'block';
+
+      cart.forEach((item, idx) => {
+        const card = document.createElement('article');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-media"><img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}"></div>
+          <div class="card-body">
+            <div>
+              <h3 class="card-title">${escapeHtml(item.name)}</h3>
+              <p class="card-desc">${escapeHtml(item.desc || '')}</p>
+            </div>
+            <div class="card-meta">
+              <div class="price">₹${format(item.price)}</div>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div class="controls" role="group" aria-label="Quantity controls">
+                  <button class="qty-btn" data-idx="${idx}" data-op="-">−</button>
+                  <div class="qty-display" aria-live="polite">${item.quantity}</div>
+                  <button class="qty-btn" data-idx="${idx}" data-op="+">+</button>
+                </div>
+                <button class="remove-btn" data-idx="${idx}" title="Remove item">🗑</button>
+              </div>
+            </div>
+          </div>
+        `;
+        card.querySelectorAll('.qty-btn').forEach(btn=>{
+          btn.addEventListener('click', ()=> {
+            const i = Number(btn.dataset.idx);
+            const op = btn.dataset.op;
+            if (op === '+') changeQty(i, +1);
+            else changeQty(i, -1);
+          });
+        });
+        card.querySelector('.remove-btn').addEventListener('click', (e)=>{
+          const i = Number(e.currentTarget.dataset.idx);
+          removeItem(i);
+        });
+
+        grid.appendChild(card);
+      });
+
+      updateSummary();
+      writeCart(cart);
+    }
+
+    function changeQty(index, delta){
+      if (!cart[index]) return;
+      cart[index].quantity = Number(cart[index].quantity) + Number(delta);
+      if (cart[index].quantity <= 0){
+        cart.splice(index,1);
+        showToast('Item removed');
+      } else {
+        showToast('Quantity updated');
+      }
+      render();
+    }
+
+    function removeItem(index){
+      if (!cart[index]) return;
+      cart.splice(index,1);
+      showToast('Item removed');
+      render();
+    }
+
+    function clearCart(){
+      cart = [];
+      writeCart(cart);
+      render();
+      showToast('Cart cleared');
+    }
+
+    function updateSummary(){
+      let subtotal = 0;
+      let count = 0;
+      cart.forEach(it => { subtotal += it.price * it.quantity; count += it.quantity; });
+      const tax = subtotal * 0.05;
+      const grand = subtotal + tax;
+      subtotalEl.textContent = '₹' + format(subtotal);
+      taxEl.textContent = '₹' + format(tax);
+      totalEl.textContent = '₹' + format(grand);
+      summaryTotalEl.textContent = '₹' + format(grand);
+      summaryCountEl.textContent = count;
+    }
+
+    function format(n){ return (Math.round((n + Number.EPSILON) * 100) / 100).toLocaleString('en-IN'); }
+
+    clearBtn.addEventListener('click', ()=> {
+      if (confirm('Clear all items from cart?')) clearCart();
+    });
+    checkoutBtn.addEventListener('click', ()=> {
+      alert('Checkout placeholder — integrate your flow here.');
+    });
+
+    render();
+
+    function escapeHtml(str){ if(!str && str !== 0) return ''; return String(str).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
+
+    // expose for debugging
+    window._stackly_cart2 = { get: ()=> cart, clear: ()=> clearCart(), reRender: ()=> render() };
+  </script>
 </body>
 </html>
