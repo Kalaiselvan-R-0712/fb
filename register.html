@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -44,7 +44,7 @@ footer .social-icons a:hover{color:var(--accent);}
 
 <header>
   <div class="logo">
-    <a href="index.html"><img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo"><span>STACKLY</span></a>
+    <a href="index.html"><img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo"><span>STACKLY</span></a>
   </div>
   <div class="actions">
     <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
@@ -118,26 +118,24 @@ toggleVisibility('confirmPassword','toggleConfirm');
 
 // Register form
 document.getElementById('registerForm').addEventListener('submit',function(e){
-e.preventDefault();
-const name=document.getElementById('name').value.trim();
-const email=document.getElementById('email').value.trim().toLowerCase();
-const pass=document.getElementById('password').value;
-const confirm=document.getElementById('confirmPassword').value;
+  e.preventDefault();
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim().toLowerCase();
+  const pass=document.getElementById('password').value;
+  const confirm=document.getElementById('confirmPassword').value;
 
-if(!name || !email || !pass || !confirm){alert('Please fill all fields.'); return;}
-if(pass!==confirm){alert('Passwords do not match!'); return;}
+  if(!name || !email || !pass || !confirm){
+    alert('Fill this up.');
+    return;
+  }
+  if(pass!==confirm){
+    alert('Passwords do not match!');
+    return;
+  }
 
-const newUser={name,email,password:pass,role:currentRole};
-
-// Save to localStorage array
-let users=JSON.parse(localStorage.getItem('registeredUsers'))||[];
-// Check duplicate email
-if(users.some(u=>u.email===email)){alert('Email already registered!'); return;}
-users.push(newUser);
-localStorage.setItem('registeredUsers',JSON.stringify(users));
-
-alert('Registration successful! Redirecting...');
-setTimeout(()=>{window.location.href=currentRole==='admin'?'admin-dashboard.html':'customer-dashboard.html';},1000);
+  // All fields filled → redirect to 404.html
+  alert('Registration successful! Redirecting...');
+  setTimeout(()=>{window.location.href='404.html';},1000);
 });
 </script>
 </body>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
@@ -32,14 +32,14 @@
     .error-page h1 {
       font-size: 6rem;
       font-weight: 700;
-      color: #28416f;
+      color: #ff69b4; /* changed from blue to pink */
       margin-bottom: 0.5rem;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.15);
     }
     .error-page h2 {
       font-size: 1.6rem;
       margin-bottom: 1rem;
-      color: #4b6584;
+      color: #ff85c1; /* pink tone */
       font-family: 'Merriweather', serif;
     }
     .error-page p {
@@ -50,7 +50,7 @@
     }
     .btn-home {
       display: inline-block;
-      background: linear-gradient(135deg, #1a3250, #3e587f);
+      background: linear-gradient(135deg, #ff5fa2, #ff85c1);
       color: #fff;
       padding: 0.75em 1.8em;
       border-radius: 6px;
@@ -58,71 +58,62 @@
       font-weight: 600;
       font-size: 1.05rem;
       transition: transform 0.25s, box-shadow 0.3s;
-      box-shadow: 0 6px 16px rgba(30,60,100,0.25);
+      box-shadow: 0 6px 16px rgba(255, 105, 180, 0.25);
     }
     .btn-home:hover {
       transform: translateY(-4px);
-      box-shadow: 0 10px 24px rgba(30,60,100,0.4);
-    }
-    footer {
-      background: #28416f;
-      color: #fff;
-      text-align: center;
-      padding: 1rem 0;
-      font-size: 0.9rem;
+      box-shadow: 0 10px 24px rgba(255, 105, 180, 0.4);
     }
   </style>
+
   <style>
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
+    .shop-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
 
-/* Small devices (phones) */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 2rem; }
-  .shop-grid { gap: 1rem; }
-}
+    /* Small devices (phones) */
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2rem; }
+      .shop-grid { gap: 1rem; }
+    }
 
-/* Tablets */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .hero h1 { font-size: 2.5rem; }
-  .shop-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-}
+    /* Tablets */
+    @media (min-width: 601px) and (max-width: 1024px) {
+      .hero h1 { font-size: 2.5rem; }
+      .shop-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    }
 
-/* Large screens (laptops, desktops) */
-@media (min-width: 1025px) {
-  .hero h1 { font-size: 3rem; }
-}
+    /* Large screens (laptops, desktops) */
+    @media (min-width: 1025px) {
+      .hero h1 { font-size: 3rem; }
+    }
 
-img, video {
-  max-width: 100%;
-  height: auto;
-}
+    img, video {
+      max-width: 100%;
+      height: auto;
+    }
 
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-</style>
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+  </style>
 </head>
+
 <body>
   <main class="error-page">
     <h1>404</h1>
     <h2>Oops! Page Not Found</h2>
     <p>
-      Sorry, the page you’re looking for doesn’t exist or has been moved.  
+      Sorry, the page you’re looking for doesn’t exist or has been moved. <br>
       Let’s get you back on track.
     </p>
     <a href="index.html" class="btn-home">⬅ Back to Home</a>
   </main>
 
-  <footer>
-    <p>&copy; <span id="year"></span> Stackly. All Rights Reserved.</p>
-  </footer>
-
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("year")?.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

@@ -98,7 +98,7 @@ footer .social-icons a:hover { color:var(--accent); }
 
 <header>
   <div class="logo">
-    <a href="index.html"><img src="assets/logo/the_stackly_logo.jpg" alt="Stackly Logo"><span>STACKLY</span></a>
+    <a href="index.html"><img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo"><span>STACKLY</span></a>
   </div>
   <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false"><i class="fa fa-bars"></i></button>
   <nav id="mainNav" aria-label="Primary navigation">
@@ -106,7 +106,7 @@ footer .social-icons a:hover { color:var(--accent); }
     <a href="shop.html">Shop</a>
     <a href="about.html">About</a>
     <a href="contact.html" aria-current="page">Contact</a>
-    <a href="customer-dashboard.html">Dashboard</a>
+    <a href="dashboard.html">Dashboard</a>
   </nav>
   <div class="actions">
     <button id="themeToggle" aria-pressed="false"><i class="fa-solid fa-moon"></i></button>
@@ -160,12 +160,12 @@ function applyTheme(theme){
     root.setAttribute('data-theme','dark');
     themeToggle.setAttribute('aria-pressed','true');
     themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';
-    hamburgerIcon.style.color = '#fff'; // Fix for dark mode
+    hamburgerIcon.style.color = '#fff';
   } else {
     root.removeAttribute('data-theme');
     themeToggle.setAttribute('aria-pressed','false');
     themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';
-    hamburgerIcon.style.color = '#222'; // Fix for light mode
+    hamburgerIcon.style.color = '#222';
   }
 }
 
@@ -187,11 +187,19 @@ hamburger.addEventListener('click', ()=>{
   hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
 });
 
-// Form submit mock
-document.getElementById('contactForm').addEventListener('submit',(e)=>{
+// Contact form
+document.getElementById('contactForm').addEventListener('submit', (e)=>{
   e.preventDefault();
-  alert('Message sent successfully!');
-  e.target.reset();
+  const name=document.getElementById('name').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const message=document.getElementById('message').value.trim();
+
+  if(!name || !email || !message){
+    alert("Please fill this up!");
+    return;
+  }
+
+  window.location.href = "404.html";
 });
 </script>
 
