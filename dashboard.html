@@ -32,14 +32,10 @@ nav#mainNav a:hover, nav#mainNav a[aria-current="page"]{color:var(--accent);}
 .actions button, .actions a{padding:0.5rem 1.2rem; border-radius:25px; font-weight:600; font-size:0.95rem; border:2px solid transparent; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; transition:0.3s;}
 .actions button#themeToggle{background:transparent; color:var(--text); border:2px solid var(--text);}
 .actions button#themeToggle:hover{background:var(--accent); border-color:var(--accent); color:white;}
-.actions a.login{background:transparent; color:var(--accent); border:2px solid var(--accent);}
-.actions a.login:hover{background:var(--accent); color:white;}
-.actions a.register{background:var(--accent); color:white; border:2px solid var(--accent);}
-.actions a.register:hover{background:var(--accent-dark);}
-.actions button#logoutBtn{background:transparent; color:var(--accent); border:2px solid var(--accent);}
-.actions button#logoutBtn:hover{background:var(--accent); color:white;}
 .actions a.home-btn{background:var(--accent); color:white; border:2px solid var(--accent);}
 .actions a.home-btn:hover{background:var(--accent-dark);}
+.actions button#logoutBtn{background:transparent; color:var(--accent); border:2px solid var(--accent);}
+.actions button#logoutBtn:hover{background:var(--accent); color:white;}
 .hamburger{display:none; font-size:1.8rem; background:none; border:none; cursor:pointer;}
 
 /* Dashboard main */
@@ -61,11 +57,12 @@ canvas{width:100%!important; height:360px!important;}
 .action-btn:hover{transform:translateY(-5px); box-shadow:0 12px 30px rgba(0,0,0,0.08);}
 .action-btn i{font-size:1.5rem; margin-bottom:0.4rem;}
 
-/* Footer identical to about.html */
-footer{background:var(--card); padding:2.5rem 6vw; text-align:center; color:var(--muted); font-size:0.95rem;}
+/* Footer identical to shop.html */
+footer{background:var(--card); color:var(--muted); font-size:0.95rem; margin-top:4rem;}
 footer .social-icons{margin-bottom:1.4rem; font-size:1.6rem; display:flex; justify-content:center; gap:1.2rem;}
 footer .social-icons a{color:var(--muted); transition:0.3s;}
 footer .social-icons a:hover{color:var(--accent);}
+
 @media(max-width:768px){
   nav#mainNav{display:none; flex-direction:column; width:100%; margin-top:0.5rem;}
   nav#mainNav a{text-align:center; width:100%; padding:0.7rem 0;}
@@ -125,53 +122,120 @@ footer .social-icons a:hover{color:var(--accent);}
   </section>
 </main>
 
+<!-- Footer (from shop.html) -->
 <footer>
-  <div class="social-icons">
-    <a href="https://mail.google.com"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+  <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; padding:2.5rem 6vw;">
+    <div style="flex:1; min-width:220px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:var(--accent); font-family:'Playfair Display', serif; font-size:1.4rem; font-weight:700;">
+        <img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo" style="height:35px; width:auto;"> STACKLY
+      </a>
+      <p style="color:var(--muted); margin-top:0.8rem; line-height:1.5;">
+        Stackly Boutique<br>
+        123 Fashion Avenue, New Delhi, India<br>
+        Email: info@stackly.com<br>
+        Phone: +91 98765 43210
+      </p>
+    </div>
+    <div style="flex:1; min-width:150px;">
+      <h3 style="font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.8rem;">Quick Links</h3>
+      <ul style="list-style:none; padding:0; margin:0; line-height:2;">
+        <li><a href="index.html" style="color:var(--muted); text-decoration:none;">Home</a></li>
+        <li><a href="shop.html" style="color:var(--muted); text-decoration:none;">Shop</a></li>
+        <li><a href="about.html" style="color:var(--muted); text-decoration:none;">About</a></li>
+        <li><a href="contact.html" style="color:var(--muted); text-decoration:none;">Contact</a></li>
+        <li><a href="dashboard.html" style="color:var(--muted); text-decoration:none;">Dashboard</a></li>
+        <li><a href="login.html" style="color:var(--muted); text-decoration:none;">Login</a></li>
+        <li><a href="register.html" style="color:var(--muted); text-decoration:none;">Register</a></li>
+      </ul>
+    </div>
+    <div style="flex:1; min-width:150px;">
+      <h3 style="font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.8rem;">Follow Us</h3>
+      <div class="social-icons" style="font-size:1.5rem; display:flex; gap:1rem;">
+        <a href="https://mail.google.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
   </div>
-  <p>&copy; <span id="year"></span> Stackly. All rights reserved.</p>
+  <div style="text-align:center; color:var(--muted); margin-top:1rem;">
+    &copy; 2025 Stackly. All rights reserved.
+  </div>
 </footer>
 
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();
-const root=document.documentElement,themeToggle=document.getElementById('themeToggle');
+// Theme toggle
+const root=document.documentElement;
+const themeToggle=document.getElementById('themeToggle');
+const hamburgerIcon=document.querySelector('.hamburger i');
 function applyTheme(theme){
   if(theme==='dark'){
     root.setAttribute('data-theme','dark');
     themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';
-  }else{
+    hamburgerIcon.style.color = '#fff';
+  } else {
     root.removeAttribute('data-theme');
     themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';
+    hamburgerIcon.style.color = '#222';
   }
-  document.querySelector('.hamburger i').style.color=theme==='dark'?'#fff':'#222';
 }
 const savedTheme=localStorage.getItem('stackly-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 applyTheme(savedTheme);
 themeToggle.addEventListener('click',()=>{
-  const cur=root.getAttribute('data-theme')==='dark'?'light':'dark';
-  applyTheme(cur);
-  localStorage.setItem('stackly-theme',cur);
-  updateChartsTheme(cur);
+  const current=root.getAttribute('data-theme')==='dark'?'light':'dark';
+  applyTheme(current);
+  localStorage.setItem('stackly-theme',current);
+  updateChartsTheme(current);
 });
+
+// Hamburger toggle
+const hamburger=document.querySelector('.hamburger');
+const nav=document.getElementById('mainNav');
+hamburger.addEventListener('click',()=>{
+  nav.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+});
+
+// User greeting & logout
 const user=JSON.parse(localStorage.getItem('loggedInUser'));
 document.getElementById('userName').textContent=user&&user.name?user.name:'Customer';
-document.getElementById('logoutBtn').addEventListener('click',()=>{localStorage.removeItem('loggedInUser');window.location.href='login.html';});
-const ctx1=document.getElementById('usageChart'),ctx2=document.getElementById('billingChart');
+document.getElementById('logoutBtn').addEventListener('click',()=>{
+  localStorage.removeItem('loggedInUser');
+  window.location.href='login.html';
+});
+
+// Charts
+const ctx1=document.getElementById('usageChart');
+const ctx2=document.getElementById('billingChart');
 let usageChart,billingChart;
 function createCharts(theme){
-  const textColor=theme==='dark'?'#f1f1f1':'#222',gridColor=theme==='dark'?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)',accent=getComputedStyle(root).getPropertyValue('--accent').trim()||'#f72585';
-  if(usageChart)usageChart.destroy();if(billingChart)billingChart.destroy();
-  usageChart=new Chart(ctx1,{type:'line',data:{labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'],datasets:[{label:'Usage (%)',data:[40,50,55,65,70,78,82,85,88,92],borderColor:accent,backgroundColor:'rgba(247,37,133,0.15)',fill:true,tension:0.4,pointRadius:4,pointBackgroundColor:accent}]},options:{scales:{y:{ticks:{color:textColor},grid:{color:gridColor}},x:{ticks:{color:textColor},grid:{color:gridColor}}},plugins:{legend:{labels:{color:textColor}}}}});
-  billingChart=new Chart(ctx2,{type:'bar',data:{labels:['Apr','May','Jun','Jul','Aug','Sep','Oct'],datasets:[{label:'Billing ($)',data:[90,100,105,110,120,124,130],backgroundColor:accent}]},options:{scales:{y:{ticks:{color:textColor},grid:{color:gridColor}},x:{ticks:{color:textColor},grid:{color:gridColor}}},plugins:{legend:{labels:{color:textColor}}}}});
+  const textColor=theme==='dark'?'#f1f1f1':'#222';
+  const gridColor=theme==='dark'?'rgba(255,255,255,0.1)':'rgba(0,0,0,0.1)';
+  const accent=getComputedStyle(root).getPropertyValue('--accent').trim()||'#f72585';
+  if(usageChart)usageChart.destroy(); 
+  if(billingChart)billingChart.destroy();
+  
+  usageChart=new Chart(ctx1,{
+    type:'line',
+    data:{
+      labels:['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct'],
+      datasets:[{label:'Usage (%)',data:[40,50,55,65,70,78,82,85,88,92],borderColor:accent,backgroundColor:'rgba(247,37,133,0.15)',fill:true,tension:0.4,pointRadius:4,pointBackgroundColor:accent}]
+    },
+    options:{scales:{y:{ticks:{color:textColor},grid:{color:gridColor}},x:{ticks:{color:textColor},grid:{color:gridColor}}},plugins:{legend:{labels:{color:textColor}}}}
+  });
+  
+  billingChart=new Chart(ctx2,{
+    type:'bar',
+    data:{
+      labels:['Apr','May','Jun','Jul','Aug','Sep','Oct'],
+      datasets:[{label:'Billing ($)',data:[90,100,105,110,120,124,130],backgroundColor:accent}]
+    },
+    options:{scales:{y:{ticks:{color:textColor},grid:{color:gridColor}},x:{ticks:{color:textColor},grid:{color:gridColor}}},plugins:{legend:{labels:{color:textColor}}}}
+  });
 }
 function updateChartsTheme(theme){createCharts(theme);}
 createCharts(savedTheme);
-const hamburger=document.querySelector('.hamburger'),nav=document.getElementById('mainNav');
-hamburger.addEventListener('click',()=>{nav.classList.toggle('active');hamburger.setAttribute('aria-expanded',nav.classList.contains('active'));});
 </script>
 </body>
 </html>

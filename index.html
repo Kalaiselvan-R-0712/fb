@@ -6,7 +6,6 @@
 <title>Stackly Boutique - Ultra Modern Fashion</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-
 <style>
 :root{
   --bg:#fafafa; --card:#fff; --text:#222; --muted:#6b6b6b;
@@ -55,7 +54,7 @@ nav#mainNav a:hover, nav#mainNav a[aria-current="page"], .dropbtn:hover{color:va
 .card-content{padding:1rem 1rem 1.5rem; flex:1;}
 .card-content h3{margin:0 0 0.5rem; font-size:1.2rem;}
 .card-content p{color:var(--muted); font-size:0.95rem; line-height:1.4;}
-footer{background:var(--card); padding:2.5rem 6vw; text-align:center; color:var(--muted); font-size:0.95rem;}
+footer{background:var(--card); color:var(--muted); font-size:0.95rem;}
 footer .social-icons{margin-bottom:1.4rem; font-size:1.6rem; display:flex; justify-content:center; gap:1.2rem;}
 footer .social-icons a{color:var(--muted); transition:0.3s;}
 footer .social-icons a:hover{color:var(--accent);}
@@ -75,13 +74,12 @@ footer .social-icons a:hover{color:var(--accent);}
   .grid{grid-template-columns:1fr;}
   .logo img{height:35px;}
 }
-
-/* Hamburger color */
 .hamburger i { color: var(--text); font-size:1.8rem;}
 [data-theme='dark'] .hamburger i { color: #fff;}
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">
     <a href="index.html"><img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo"><span>STACKLY</span></a>
@@ -138,21 +136,58 @@ footer .social-icons a:hover{color:var(--accent);}
 </section>
 
 <footer id="contact">
-  <div class="social-icons">
-    <a href="https://mail.google.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; padding:2.5rem 6vw;">
+    
+    <!-- Logo & Brand -->
+    <div style="flex:1; min-width:220px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:var(--accent); font-family:'Playfair Display', serif; font-size:1.4rem; font-weight:700;">
+        <img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo" style="height:35px; width:auto;"> STACKLY
+      </a>
+      <p style="color:var(--muted); margin-top:0.8rem; line-height:1.5;">
+        Stackly Boutique<br>
+        123 Fashion Avenue, New Delhi, India<br>
+        Email: info@stackly.com<br>
+        Phone: +91 98765 43210
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div style="flex:1; min-width:150px;">
+      <h3 style="font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.8rem;">Quick Links</h3>
+      <ul style="list-style:none; padding:0; margin:0; line-height:2;">
+        <li><a href="index.html" style="color:var(--muted); text-decoration:none;">Home</a></li>
+        <li><a href="shop.html" style="color:var(--muted); text-decoration:none;">Shop</a></li>
+        <li><a href="about.html" style="color:var(--muted); text-decoration:none;">About</a></li>
+        <li><a href="contact.html" style="color:var(--muted); text-decoration:none;">Contact</a></li>
+        <li><a href="dashboard.html" style="color:var(--muted); text-decoration:none;">Dashboard</a></li>
+        <li><a href="login.html" style="color:var(--muted); text-decoration:none;">Login</a></li>
+        <li><a href="register.html" style="color:var(--muted); text-decoration:none;">Register</a></li>
+      </ul>
+    </div>
+
+    <!-- Social Icons -->
+    <div style="flex:1; min-width:150px;">
+      <h3 style="font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.8rem;">Follow Us</h3>
+      <div class="social-icons" style="font-size:1.5rem; display:flex; gap:1rem;">
+        <a href="https://mail.google.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
   </div>
-  <p>&copy; 2025 Stackly. All rights reserved.</p>
+
+  <div style="text-align:center; color:var(--muted); margin-top:1rem;">
+    &copy; 2025 Stackly. All rights reserved.
+  </div>
 </footer>
 
 <script>
 // Theme toggle
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
-
 function applyTheme(theme){
   if(theme==='dark'){
     root.setAttribute('data-theme','dark');
@@ -163,17 +198,12 @@ function applyTheme(theme){
     themeToggle.setAttribute('aria-pressed','false');
     themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';
   }
-  // Hamburger color
   const hamburgerIcon = document.querySelector('.hamburger i');
   hamburgerIcon.style.color = theme==='dark'?'#fff':'#222';
 }
-
-// Load saved theme
 const savedTheme = localStorage.getItem('stackly-theme') || 
                    (window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 applyTheme(savedTheme);
-
-// Toggle theme
 themeToggle.addEventListener('click', ()=>{
   const current = root.getAttribute('data-theme')==='dark'?'light':'dark';
   applyTheme(current);
@@ -199,8 +229,6 @@ dropdowns.forEach(drop=>{
     }
   });
 });
-
-// Close dropdown if click outside
 document.addEventListener('click', e=>{
   if(window.innerWidth<=768){
     dropdowns.forEach(drop=>{

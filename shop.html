@@ -6,6 +6,7 @@
 <title>Stackly Boutique - Shop</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 <style>
 :root{
   --bg:#fafafa; --card:#fff; --text:#222; --muted:#6b6b6b;
@@ -44,7 +45,7 @@ main h1{font-family:'Playfair Display',serif;font-size:2.5rem;text-align:center;
 .card-content .price{margin-top:0.5rem;font-weight:700;color:var(--accent);}
 .add-to-cart{margin-top:1rem;padding:0.6rem;border:none;border-radius:25px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:0.3s;}
 .add-to-cart:hover{background:var(--accent-dark);}
-footer{background:var(--card);padding:2.5rem 6vw;text-align:center;color:var(--muted);font-size:0.95rem;}
+footer{background:var(--card);color:var(--muted);font-size:0.95rem;margin-top:4rem;}
 footer .social-icons{margin-bottom:1.4rem;font-size:1.6rem;display:flex;justify-content:center;gap:1.2rem;}
 footer .social-icons a{color:var(--muted);transition:0.3s;}
 footer .social-icons a:hover{color:var(--accent);}
@@ -65,8 +66,8 @@ footer .social-icons a:hover{color:var(--accent);}
   <div class="logo">
     <a href="index.html"><img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo"><span>STACKLY</span></a>
   </div>
-  <button class="hamburger" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-  <nav id="mainNav">
+  <button class="hamburger" aria-label="Toggle navigation" aria-expanded="false"><i class="fa fa-bars"></i></button>
+  <nav id="mainNav" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="shop.html" aria-current="page">Shop</a>
     <a href="about.html">About</a>
@@ -74,7 +75,7 @@ footer .social-icons a:hover{color:var(--accent);}
     <a href="dashboard.html">Dashboard</a>
   </nav>
   <div class="actions">
-    <button id="themeToggle"><i class="fa-solid fa-moon"></i></button>
+    <button id="themeToggle" aria-pressed="false"><i class="fa-solid fa-moon"></i></button>
     <a href="login.html" class="login">Login</a>
     <a href="register.html" class="register">Register</a>
   </div>
@@ -83,7 +84,6 @@ footer .social-icons a:hover{color:var(--accent);}
 <main>
   <h1>Shop Our Boutique</h1>
   <div class="grid">
-    <!-- Each card -->
     <div class="card">
       <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80" alt="Lavender Chic Dress">
       <div class="card-content">
@@ -95,6 +95,7 @@ footer .social-icons a:hover{color:var(--accent);}
         <button class="add-to-cart" data-name="Lavender Chic Dress" data-price="149" data-image="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=900&q=80">Add to Cart</button>
       </div>
     </div>
+
     <div class="card">
       <img src="https://images.unsplash.com/photo-1463107971871-fbac9ddb920f?auto=format&fit=crop&w=900&q=80" alt="Classic White Blouse">
       <div class="card-content">
@@ -106,8 +107,9 @@ footer .social-icons a:hover{color:var(--accent);}
         <button class="add-to-cart" data-name="Classic White Blouse" data-price="79" data-image="https://images.unsplash.com/photo-1463107971871-fbac9ddb920f?auto=format&fit=crop&w=900&q=80">Add to Cart</button>
       </div>
     </div>
+
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&w=900&q=80" alt="Summer Hat">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&w=900&q=80" alt="Trendy Summer Hat">
       <div class="card-content">
         <div>
           <h3>Trendy Summer Hat</h3>
@@ -117,8 +119,9 @@ footer .social-icons a:hover{color:var(--accent);}
         <button class="add-to-cart" data-name="Trendy Summer Hat" data-price="45" data-image="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&w=900&q=80">Add to Cart</button>
       </div>
     </div>
+
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Handbag">
+      <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80" alt="Classic Leather Handbag">
       <div class="card-content">
         <div>
           <h3>Classic Leather Handbag</h3>
@@ -128,8 +131,9 @@ footer .social-icons a:hover{color:var(--accent);}
         <button class="add-to-cart" data-name="Classic Leather Handbag" data-price="199" data-image="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=80">Add to Cart</button>
       </div>
     </div>
+
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=900&q=80" alt="Black Ankle Boots">
+      <img src="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=900&q=80" alt="Stylish Black Ankle Boots">
       <div class="card-content">
         <div>
           <h3>Stylish Black Ankle Boots</h3>
@@ -139,8 +143,9 @@ footer .social-icons a:hover{color:var(--accent);}
         <button class="add-to-cart" data-name="Stylish Black Ankle Boots" data-price="120" data-image="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=900&q=80">Add to Cart</button>
       </div>
     </div>
+
     <div class="card">
-      <img src="https://images.unsplash.com/photo-1542068829-1115f7259450?auto=format&fit=crop&w=900&q=80" alt="Silk Scarf">
+      <img src="https://images.unsplash.com/photo-1542068829-1115f7259450?auto=format&fit=crop&w=900&q=80" alt="Elegant Silk Scarf">
       <div class="card-content">
         <div>
           <h3>Elegant Silk Scarf</h3>
@@ -153,32 +158,84 @@ footer .social-icons a:hover{color:var(--accent);}
   </div>
 </main>
 
+<!-- Footer copied exactly from Contact page -->
 <footer>
-  <div class="social-icons">
-    <a href="https://mail.google.com"><i class="fa-solid fa-envelope"></i></a>
-    <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
-    <a href="https://x.com"><i class="fab fa-twitter"></i></a>
-    <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
-    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+  <div style="max-width:1200px; margin:0 auto; display:flex; flex-wrap:wrap; justify-content:space-between; gap:2rem; padding:2.5rem 6vw;">
+    <div style="flex:1; min-width:220px;">
+      <a href="index.html" style="display:flex; align-items:center; gap:0.5rem; text-decoration:none; color:var(--accent); font-family:'Playfair Display', serif; font-size:1.4rem; font-weight:700;">
+        <img src="assets/logo/the_stackly_logo.png" alt="Stackly Logo" style="height:35px; width:auto;"> STACKLY
+      </a>
+      <p style="color:var(--muted); margin-top:0.8rem; line-height:1.5;">
+        Stackly Boutique<br>
+        123 Fashion Avenue, New Delhi, India<br>
+        Email: info@stackly.com<br>
+        Phone: +91 98765 43210
+      </p>
+    </div>
+    <div style="flex:1; min-width:150px;">
+      <h3 style="font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.8rem;">Quick Links</h3>
+      <ul style="list-style:none; padding:0; margin:0; line-height:2;">
+        <li><a href="index.html" style="color:var(--muted); text-decoration:none;">Home</a></li>
+        <li><a href="shop.html" style="color:var(--muted); text-decoration:none;">Shop</a></li>
+        <li><a href="about.html" style="color:var(--muted); text-decoration:none;">About</a></li>
+        <li><a href="contact.html" style="color:var(--muted); text-decoration:none;">Contact</a></li>
+        <li><a href="dashboard.html" style="color:var(--muted); text-decoration:none;">Dashboard</a></li>
+        <li><a href="login.html" style="color:var(--muted); text-decoration:none;">Login</a></li>
+        <li><a href="register.html" style="color:var(--muted); text-decoration:none;">Register</a></li>
+      </ul>
+    </div>
+    <div style="flex:1; min-width:150px;">
+      <h3 style="font-family:'Playfair Display', serif; color:var(--accent); margin-bottom:0.8rem;">Follow Us</h3>
+      <div class="social-icons" style="font-size:1.5rem; display:flex; gap:1rem;">
+        <a href="https://mail.google.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.linkedin.com" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://x.com" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
   </div>
-  <p>&copy; 2025 Stackly. All rights reserved.</p>
+  <div style="text-align:center; color:var(--muted); margin-top:1rem;">
+    &copy; 2025 Stackly. All rights reserved.
+  </div>
 </footer>
 
 <script>
-// THEME TOGGLE
+// Theme toggle
 const themeToggle=document.getElementById('themeToggle');
 const root=document.documentElement;
-function applyTheme(t){if(t==='dark'){root.setAttribute('data-theme','dark');themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';}else{root.removeAttribute('data-theme');themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';}}
+const hamburgerIcon=document.querySelector('.hamburger i');
+
+function applyTheme(theme){
+  if(theme==='dark'){
+    root.setAttribute('data-theme','dark');
+    themeToggle.setAttribute('aria-pressed','true');
+    themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';
+    hamburgerIcon.style.color = '#fff';
+  } else {
+    root.removeAttribute('data-theme');
+    themeToggle.setAttribute('aria-pressed','false');
+    themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';
+    hamburgerIcon.style.color = '#222';
+  }
+}
 const savedTheme=localStorage.getItem('stackly-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 applyTheme(savedTheme);
-themeToggle.addEventListener('click',()=>{const c=root.getAttribute('data-theme')==='dark'?'light':'dark';applyTheme(c);localStorage.setItem('stackly-theme',c);});
+themeToggle.addEventListener('click',()=>{
+  const current=root.getAttribute('data-theme')==='dark'?'light':'dark';
+  applyTheme(current);
+  localStorage.setItem('stackly-theme',current);
+});
 
-// HAMBURGER
+// Hamburger toggle
 const hamburger=document.querySelector('.hamburger');
 const nav=document.getElementById('mainNav');
-hamburger.addEventListener('click',()=>{nav.classList.toggle('active');});
+hamburger.addEventListener('click',()=>{
+  nav.classList.toggle('active');
+  hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
+});
 
-// ADD TO CART
+// Add to Cart
 const buttons=document.querySelectorAll('.add-to-cart');
 buttons.forEach(btn=>{
   btn.addEventListener('click',()=>{
