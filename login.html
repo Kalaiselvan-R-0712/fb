@@ -74,19 +74,24 @@ main{
   font-family:'Playfair Display',serif;font-size:2rem;
   margin-bottom:1.5rem;color:var(--accent);
 }
+
+/* KEY FIX: wrap input + icon in .field-inner so error messages below don't affect icon centering */
 .input-group{position:relative;width:100%;margin:0.8rem 0;}
-.input-group input{
+.field-inner{position:relative;}
+.field-inner input{
   width:100%;padding:0.8rem 1rem;padding-right:2.8rem;
   border:2px solid var(--muted);border-radius:var(--radius);
   font-size:1rem;background:transparent;color:var(--text);
   transition:0.3s;
 }
-.input-group input:focus{outline:none;border-color:var(--accent);}
-.input-group .toggle-password{
+.field-inner input:focus{outline:none;border-color:var(--accent);}
+.field-inner .toggle-password{
   position:absolute;right:1rem;top:50%;transform:translateY(-50%);
-  cursor:pointer;color:var(--muted);transition:0.2s;
+  cursor:pointer;color:var(--muted);transition:0.2s; z-index:10;
 }
-.input-group .toggle-password:hover{color:var(--accent);}
+.field-inner .toggle-password:hover{color:var(--accent);}
+
+/* tooltips remain same */
 .tooltip{
   position:absolute;bottom:110%;left:0;background:var(--card);
   color:var(--accent-dark);border:1px solid var(--accent);
@@ -95,10 +100,16 @@ main{
   opacity:0;pointer-events:none;transition:opacity 0.25s;z-index:100;
 }
 .tooltip.active{opacity:1;}
+
+/* ERROR: now placed *outside* .field-inner so they don't change input height/center */
 .error-message{
   color:#ff3b3b;font-size:0.85rem;margin-top:0.4rem;
   text-align:left;font-weight:500;
+  /* ensure no absolute positioning so it pushes naturally below input */
+  position:static;
 }
+
+/* rest unchanged */
 .login-card button{
   width:100%;padding:0.9rem;background:var(--accent);
   color:#fff;border:none;border-radius:var(--radius);
@@ -109,17 +120,10 @@ main{
 .login-card p{color:var(--muted);margin-top:1rem;font-size:0.95rem;}
 .login-card a{color:var(--accent);text-decoration:none;font-weight:600;}
 .login-card a:hover{text-decoration:underline;}
-
-/* Footer same as shop.html/dashboard except no quick links */
 footer{
   background:var(--card);padding:2.5rem 6vw;text-align:center;
   color:var(--muted);font-size:0.95rem;
 }
-footer .footer-content{
-  max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;
-}
-footer .footer-content div{flex:1;min-width:220px;text-align:center;}
-footer .footer-content .logo-footer{margin-bottom:1rem;}
 footer .social-icons{
   margin-bottom:1.4rem;font-size:1.6rem;
   display:flex;justify-content:center;gap:1.2rem;
@@ -132,6 +136,7 @@ footer .social-icons a:hover{color:var(--accent);}
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -152,16 +157,24 @@ footer .social-icons a:hover{color:var(--accent);}
   <div class="login-card">
     <h1 id="loginTitle">Customer Login</h1>
     <form id="loginForm" novalidate>
+      <!-- EMAIL: field-inner contains input and icon (none here) -->
       <div class="input-group">
-        <input type="email" id="email" placeholder="Email Address" required>
+        <div class="field-inner">
+          <input type="email" id="email" placeholder="Email Address" required>
+        </div>
         <div class="tooltip" id="emailTip">Example: user@domain.com</div>
+        <!-- error now sits outside the .field-inner -->
         <div class="error-message" id="emailError"></div>
       </div>
 
+      <!-- PASSWORD: field-inner ensures icon stays vertically centered relative to input only -->
       <div class="input-group">
-        <input type="password" id="password" placeholder="Password" required>
-        <i class="fa-solid fa-eye toggle-password" id="togglePassword"></i>
+        <div class="field-inner">
+          <input type="password" id="password" placeholder="Password" required>
+          <i class="fa-solid fa-eye toggle-password" id="togglePassword" aria-hidden="true"></i>
+        </div>
         <div class="tooltip" id="passTip">Password must include A-Z, a-z, 0-9 & special character</div>
+        <!-- error placed below the field-inner so it doesn't change the icon vertical alignment -->
         <div class="error-message" id="passError"></div>
       </div>
 
@@ -204,13 +217,8 @@ footer .social-icons a:hover{color:var(--accent);}
 const themeToggle=document.getElementById('themeToggle');
 const root=document.documentElement;
 function applyTheme(theme){
-  if(theme==='dark'){
-    root.setAttribute('data-theme','dark');
-    themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';
-  }else{
-    root.removeAttribute('data-theme');
-    themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';
-  }
+  if(theme==='dark'){root.setAttribute('data-theme','dark');themeToggle.innerHTML='<i class="fa-solid fa-sun"></i>';}
+  else{root.removeAttribute('data-theme');themeToggle.innerHTML='<i class="fa-solid fa-moon"></i>';}
 }
 const savedTheme=localStorage.getItem('stackly-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
 applyTheme(savedTheme);
@@ -249,6 +257,7 @@ const emailInput=document.getElementById('email');
 const passwordField=document.getElementById('password');
 const emailTip=document.getElementById('emailTip');
 const passTip=document.getElementById('passTip');
+
 emailInput.addEventListener('focus',()=>emailTip.classList.add('active'));
 emailInput.addEventListener('blur',()=>emailTip.classList.remove('active'));
 passwordField.addEventListener('focus',()=>passTip.classList.add('active'));
@@ -265,12 +274,21 @@ document.getElementById('loginForm').addEventListener('submit',function(e){
 
   const emailPattern=/^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   const passPattern=/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[%&!@#\$^+=]).{8,}$/;
+
   let valid=true;
 
-  if(!emailPattern.test(email)){emailError.textContent="Please enter a valid email address (e.g. user@domain.com)"; valid=false;}
-  if(!passPattern.test(password)){passError.textContent="Password must have A-Z, a-z, 0-9, and a special character (%&!@# etc)"; valid=false;}
-  if(!valid)return;
+  if(!emailPattern.test(email)){
+    emailError.textContent="Please enter a valid email address (e.g. user@domain.com)";
+    valid=false;
+  }
+  if(!passPattern.test(password)){
+    passError.textContent="Password must have A-Z, a-z, 0-9, and a special character (%&!@# etc)";
+    valid=false;
+  }
 
+  if(!valid) return;
+
+  // Success redirect
   alert('Login successful! Redirecting...');
   setTimeout(()=>{window.location.href='404.html';},1000);
 });
