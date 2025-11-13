@@ -22,8 +22,8 @@ header{position:fixed; top:0; left:0; right:0; display:flex; justify-content:spa
 .logo a{display:flex; align-items:center; gap:0.7rem; text-decoration:none; color:var(--accent); font-family:'Playfair Display', serif; font-size:1.6rem; font-weight:700;}
 .logo img{height:40px; width:auto;}
 nav#mainNav{display:flex; gap:1.5rem;}
-nav#mainNav a, .dropbtn{color:var(--text); text-decoration:none; font-weight:600; text-transform:uppercase; font-size:0.95rem; cursor:pointer; background:none; border:none; outline:none; display:flex; align-items:center; gap:0.2rem;}
-nav#mainNav a:hover, nav#mainNav a[aria-current="page"], .dropbtn:hover{color:var(--accent);}
+nav#mainNav a{color:var(--text); text-decoration:none; font-weight:600; text-transform:uppercase; font-size:0.95rem; cursor:pointer;}
+nav#mainNav a:hover, nav#mainNav a[aria-current="page"]{color:var(--accent);}
 .dropdown{position:relative;}
 .dropdown-content{display:none; position:absolute; top:100%; left:0; background:var(--card); min-width:140px; box-shadow:0 4px 10px rgba(0,0,0,0.1); border-radius:var(--radius); flex-direction:column; z-index:1500;}
 .dropdown-content a{padding:0.6rem 1rem; display:block; font-weight:600; font-size:0.9rem; text-transform:none; color:var(--text);}
@@ -76,6 +76,25 @@ footer .social-icons a:hover{color:var(--accent);}
 }
 .hamburger i { color: var(--text); font-size:1.8rem;}
 [data-theme='dark'] .hamburger i { color: #fff;}
+
+nav#mainNav .dropbtn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif; /* match other nav links */
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0; /* remove default button padding */
+}
+nav#mainNav .dropbtn:hover {
+  color: var(--accent);
+}
+
 </style>
 </head>
 <body>
