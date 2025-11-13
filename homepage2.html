@@ -7,7 +7,6 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-
   <!-- Remix Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 
@@ -16,15 +15,165 @@
       --gold: #d4af37;
       --black: #000;
       --white: #fff;
-      --text-dark: #111;
-      --text-light: #f5f5f5;
       --bg-light: #ffffff;
       --bg-dark: #0b0b0b;
-      --muted-light: #555;
-      --muted-dark: #bbb;
+      --text-dark: #111;
+      --text-light: #f5f5f5;
     }
 
     body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      transition: background 0.4s, color 0.4s;
+    }
+
+    body.dark-mode {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: var(--bg-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      transition: background 0.4s, color 0.4s;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    body.dark-mode header {
+      background: var(--bg-dark);
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-img {
+      height: 50px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-name {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: inherit;
+      margin: 0 1rem;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -5px;
+      width: 0%;
+      height: 2px;
+      background: var(--gold);
+      transition: 0.3s;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      background: transparent;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    #modeToggle {
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--gold);
+      transition: transform 0.3s;
+    }
+
+    /* Dropdown */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropbtn {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--bg-light);
+      min-width: 120px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      z-index: 1000;
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 0.5rem 1rem;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .dropdown.show .dropdown-content {
+      display: block;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--gold);
+      z-index: 1001;
+    }
+
+       body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
       background-color: var(--bg-light);
@@ -315,203 +464,90 @@
   font-family: "Poppins", sans-serif;
 }
 
-  /* Dropdown Styles */
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
+    /* --- MOBILE FIXES --- */
+    @media (max-width: 768px) {
+      header {
+        flex-wrap: wrap;
+        padding: 0.8rem 1.2rem;
+      }
 
-  .dropbtn {
-    text-decoration: none;
-    color: inherit;
-    margin: 0 1rem;
-    font-weight: 500;
-    position: relative;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 3px;
-  }
+      .hamburger {
+        display: block;
+        position: absolute;
+        top: 1rem;
+        right: 1.2rem;
+      }
 
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: var(--bg-light);
-    min-width: 120px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-    border-radius: 8px;
-    z-index: 1000;
-  }
+      nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+      }
 
-  .dropdown-content a {
-    display: block;
-    padding: 0.5rem 1rem;
-    color: var(--text-dark);
-    text-decoration: none;
-    font-weight: 500;
-  }
+      nav.active {
+        display: flex;
+      }
 
-  .dropdown-content a:hover {
-    background: var(--gold);
-    color: var(--black);
-  }
+      nav a, .dropbtn {
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 0.8rem 0;
+      }
 
-  .dropdown.show .dropdown-content {
-    display: block;
-  }
+      .dropdown-content {
+        position: relative;
+        background: var(--bg-light);
+        box-shadow: none;
+        margin-top: 0.4rem;
+      }
+
+      /* Center dropdown arrow under Home */
+      .dropbtn i {
+        display: inline-block;
+        transform: translateY(2px);
+      }
+
+      .btn-group {
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.5rem;
+      }
+    }
   </style>
-  <style>
-.shop-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Small devices (phones) */
-@media (max-width: 600px) {
-  .hero h1 { font-size: 2rem; }
-  .shop-grid { gap: 1rem; }
-}
-
-/* Tablets */
-@media (min-width: 601px) and (max-width: 1024px) {
-  .hero h1 { font-size: 2.5rem; }
-  .shop-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
-}
-
-/* Large screens (laptops, desktops) */
-@media (min-width: 1025px) {
-  .hero h1 { font-size: 3rem; }
-}
-
-img, video {
-  max-width: 100%;
-  height: auto;
-}
-
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-
-/* --- HEADER RESPONSIVE FIXES --- */
-header {
-  flex-wrap: wrap;
-}
-
-/* Dropdown adjustments */
-.nav-item.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--bg-light);
-  min-width: 150px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  border-radius: 8px;
-  flex-direction: column;
-  z-index: 1001;
-}
-
-.dropdown-content a {
-  padding: 0.5rem 1rem;
-  display: block;
-  color: var(--text-dark);
-}
-
-.nav-item.dropdown:hover .dropdown-content {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Hamburger menu for mobile */
-.hamburger {
-  display: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  z-index: 1002;
-}
-
-/* NAV and BUTTON adjustments for tablets & mobile */
-@media (max-width: 1024px) {
-  nav {
-    gap: 0.5rem;
-  }
-  .logo-img { height: 40px; }
-}
-
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    width: 100%;
-    flex-direction: column;
-    margin-top: 0.5rem;
-  }
-
-  nav a, .dropdown-content a {
-    padding: 0.7rem 0;
-    width: 100%;
-    text-align: center;
-  }
-
-  .hamburger {
-    display: block;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  .btn-group {
-    margin-top: 0.5rem;
-    width: 100%;
-    justify-content: center;
-  }
-
-  header {
-    flex-wrap: wrap;
-    padding: 0.5rem 1rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .brand-name { font-size: 1.3rem; }
-  .logo-img { height: 35px; }
-}
-
-</style>
 </head>
+
 <body>
   <header>
-  <a href="homepage2.html" class="logo">
+    <a href="homepage2.html" class="logo">
       <img src="assets/logo/the_stackly_logo.png" alt="STACKLY Logo" class="logo-img">
       <span class="brand-name">STACKLY</span>
-  </a>
-  <nav>
-    <div class="dropdown">
-      <a href="#" class="dropbtn">Home <i class="ri-arrow-down-s-line"></i></a>
-      <div class="dropdown-content">
-        <a href="index.html">Home:1</a>
-      </div>
-    </div>
-    <a href="shop2.html">Shop</a>
-    <a href="about2.html">About</a>
-    <a href="gallery2.html">Gallery</a>
-    <a href="contact2.html">Contact</a>
-    <a href="dashboard.html">Dashboard</a>
-  </nav>
-  <div class="btn-group">
-    <a href="login.html" class="btn">Login</a>
-    <a href="register.html" class="btn">Register</a>
-    <i id="modeToggle" class="ri-moon-line"></i>
-  </div>
-  </header>
+    </a>
 
+    <nav>
+      <div class="dropdown">
+        <a href="#" class="dropbtn">Home <i class="ri-arrow-down-s-line"></i></a>
+        <div class="dropdown-content">
+          <a href="index.html">Home:1</a>
+        </div>
+      </div>
+      <a href="shop2.html">Shop</a>
+      <a href="about2.html">About</a>
+      <a href="gallery2.html">Gallery</a>
+      <a href="contact2.html">Contact</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+
+    <div class="btn-group">
+      <a href="login.html" class="btn">Login</a>
+      <a href="register.html" class="btn">Register</a>
+      <i id="modeToggle" class="ri-moon-line"></i>
+    </div>
+
+    <div class="hamburger"><i class="ri-menu-line"></i></div>
+  </header>
   <section class="hero">
     <div class="hero-content">
       <h1>Where Style Meets Soul</h1>
@@ -565,12 +601,10 @@ header {
   <script>
     const toggle = document.getElementById('modeToggle');
     const body = document.body;
-
     if (localStorage.getItem('mode') === 'dark') {
       body.classList.add('dark-mode');
       toggle.classList.replace('ri-moon-line', 'ri-sun-line');
     }
-
     toggle.addEventListener('click', () => {
       body.classList.toggle('dark-mode');
       const dark = body.classList.contains('dark-mode');
@@ -578,44 +612,22 @@ header {
       toggle.classList.toggle('ri-sun-line', dark);
       toggle.classList.toggle('ri-moon-line', !dark);
     });
-  </script>
-  <script>
-  // Dropdown toggle
-  const dropbtn = document.querySelector('.dropbtn');
-  const dropdown = document.querySelector('.dropdown');
 
-  dropbtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    dropdown.classList.toggle('show');
-  });
+    const dropdown = document.querySelector('.dropdown');
+    const dropbtn = document.querySelector('.dropbtn');
+    dropbtn.addEventListener('click', e => {
+      e.preventDefault();
+      dropdown.classList.toggle('show');
+    });
+    window.addEventListener('click', e => {
+      if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
+    });
 
-  // Close dropdown if clicked outside
-  window.addEventListener('click', (e) => {
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove('show');
-    }
-  });
-  // Mobile Hamburger toggle
-const hamburger = document.createElement('div');
-hamburger.classList.add('hamburger');
-hamburger.innerHTML = '<i class="ri-menu-line"></i>';
-document.querySelector('header').appendChild(hamburger);
-
-const nav = document.querySelector('header nav');
-
-hamburger.addEventListener('click', () => {
-  nav.classList.toggle('active');
-});
-
-// Close dropdowns on mobile when clicking outside
-document.addEventListener('click', function(event) {
-  const dropdowns = document.querySelectorAll('.dropdown-content');
-  dropdowns.forEach(dd => {
-    if (!dd.parentElement.contains(event.target)) {
-      dd.style.display = '';
-    }
-  });
-});
+    const hamburger = document.querySelector('.hamburger');
+    const nav = document.querySelector('nav');
+    hamburger.addEventListener('click', () => {
+      nav.classList.toggle('active');
+    });
   </script>
 </body>
 </html>
