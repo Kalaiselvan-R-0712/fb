@@ -62,12 +62,13 @@ footer .social-icons a:hover{color:var(--accent);}
 /* MOBILE STYLES */
 .hamburger{display:none; font-size:1.8rem; background:none; border:none; cursor:pointer;}
 @media(max-width:768px){
-  nav#mainNav{display:none; flex-direction:column; width:100%; margin-top:0.5rem;}
+  nav#mainNav{display:none; flex-direction:column; width:100%; margin-top:0.5rem; text-align:center;} 
   nav#mainNav.active{display:flex;}
-  nav#mainNav a, .dropdown-content a{text-align:center; width:100%; padding:0.7rem 0;}
+  nav#mainNav a, .dropdown-content a, .dropbtn{text-align:center; width:100%; padding:0.7rem 0; margin:0 auto;} 
   .dropdown:hover .dropdown-content{display:none;}
   .hamburger{display:block;}
-  .dropdown.active .dropdown-content{display:flex; flex-direction:column;}
+  .dropdown.active .dropdown-content{display:flex; flex-direction:column; align-items:center;} /* center dropdown items */
+  .dropdown-content a{width:auto; text-align:center;} /* dropdown links centered */
 }
 @media(max-width:480px){
   .hero h1{font-size:2rem;}
@@ -85,15 +86,14 @@ nav#mainNav .dropbtn {
   text-transform: uppercase;
   font-size: 0.95rem;
   cursor: pointer;
-  font-family: 'Poppins', sans-serif; /* match other nav links */
+  font-family: 'Poppins', sans-serif;
   display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  padding: 0; /* remove default button padding */
+  flex-direction: column; /* stack text and arrow vertically */
+  align-items: center;   /* center text and arrow */
+  gap: 0.2rem;           /* small gap between text and arrow */
+  padding: 0;
 }
-nav#mainNav .dropbtn:hover {
-  color: var(--accent);
-}
+nav#mainNav .dropbtn:hover { color: var(--accent); }
 
 </style>
 </head>
@@ -204,7 +204,7 @@ nav#mainNav .dropbtn:hover {
 </footer>
 
 <script>
-// Theme toggle
+// Theme toggle and hamburger dropdown scripts remain same
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 function applyTheme(theme){
@@ -229,7 +229,6 @@ themeToggle.addEventListener('click', ()=>{
   localStorage.setItem('stackly-theme', current);
 });
 
-// Hamburger toggle
 const hamburger=document.querySelector('.hamburger');
 const nav=document.getElementById('mainNav');
 hamburger.addEventListener('click', ()=>{
@@ -237,7 +236,6 @@ hamburger.addEventListener('click', ()=>{
   hamburger.setAttribute('aria-expanded', nav.classList.contains('active'));
 });
 
-// Mobile dropdown
 const dropdowns=document.querySelectorAll('.dropdown');
 dropdowns.forEach(drop=>{
   const btn=drop.querySelector('.dropbtn');
